@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Antrian | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="dashboard-header">
+        <div class="back-button">
+            &#8592; <!-- Panah Kiri -->
+            <!-- KEMBALI -->
+        </div>
+        <h1>APLIKASI ANTREAN</h1>
+    </header>
+    <main> 
+      <div class="container-dashboard-antrean">
+        <div class="pilihpoli-right-section-antrean">
+            <div class="pilihpoli-input-group">
+              <h2>Poli</h2>
+              <p>Silakan pilih poli :</p>
+              <select class="pilihpoli-select">
+                <option disabled selected>-- Pilih Poli --</option>
+                <option value="umum">Poli Umum</option>
+                <option value="gigi">Poli Gigi</option>
+                <option value="anak">Poli Anak</option>
+                <option value="penyakit-dalam">Poli Penyakit Dalam</option>
+              </select>
+            </div>
+            <div class="pilihpoli-input-group">
+              <h2>Dokter</h2>
+              <p>Silakan pilih Dokter dan Jadwal Dokter :</p>
+              <select class="pilihpoli-select">
+                <option disabled selected>-- Pilih Dokter & Jadwal --</option>
+                <option value="dr-andi">dr. Andi - Senin 08:00</option>
+                <option value="dr-budi">dr. Budi - Selasa 10:00</option>
+                <option value="dr-citra">dr. Citra - Rabu 13:00</option>
+              </select>
+              </div>
+              <button class="btn-panggil" onclick="window.location.href='poli-panggilantreanpoli.html'">Selanjutnya</button>
+          </div>
+      </div>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+    </footer>
+    
+</body>
+</html>

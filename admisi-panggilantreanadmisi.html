@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Antrean | Admisi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="admisi-pilihloket.html" class="back-button">&#8592;</a>
+        <h1>PANGGIL ANTREAN ADMISI</h1>
+        <div class="logout-button" onclick="window.location.href='index.html'">Log-Out</div>
+    </header>
+    <main> 
+        <div class="container-loketpanggil">
+            <div class="box-kiri">
+                <div class="latar">
+                    <div class="latar-content">
+                    <strong>Nomor Antrian Yang Sedang Dilayani</strong><br>
+                    <strong>Loket : 1</strong>
+                    <div class="nomor-antrian">PB-001</div>
+                    </div>
+                    <div class="info-waktu">
+                    <div><strong>Waktu Ambil</strong> : HH:MM:SS</div>
+                    <div><strong>Waktu Panggil</strong> : HH:MM:SS</div>
+                    <div><strong>Lama Tunggu</strong> : HH:MM:SS</div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-kanan">
+            <div><strong>Antrian yang telah dilayani :</strong></div>
+            <div><strong>Sisa Antrian :</strong></div>
+            <div class="options">
+                <label><input type="radio" name="aksi" value="selanjutnya">Selanjutnya</label>
+                <label><input type="radio" name="aksi" value="lewati">Lewati</label>
+                <button class="panggil-button">Panggil Berikutnya</button>
+            </div>
+            </div>
+        </div>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+    </footer>
+</body>
+</html>
