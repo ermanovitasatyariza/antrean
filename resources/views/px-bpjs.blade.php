@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Antrian | E-Kios</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <a href="ekios" class="back-button">
+            &#8592;
+        </a>
+        <h1>AMBIL ANTREAN PASIEN BPJS</h1>
+    </header>
+
+    <!-- Background Image -->
+    <main>
+        <div class="menu-container">
+            <button class="menu-button right" onclick="window.location.href='px-bpjs-lama'">PASIEN LAMA</button>
+            <button class="menu-button bottom" onclick="window.location.href='assesment'">PASIEN BARU</button>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Antrian | Display</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+  <header class="dashboard-header">
+    <a href="dashboard" class="back-button">&#8592;</a>
+    <h1>ANTREAN ADMISI SEDANG DILAYANI</h1>
+  </header>
+    <main>
+        <div class="display">
+            <!-- <h1 class="display-judul"></h1> -->
+            <div class="display-wrapper">
+                <!-- ANTRIAN DIPANGGIL -->
+                <div class="box-panggil">
+                  <h2 class="panggil-title">ANTREAN DIPANGGIL</h2>
+                  <div class="panggil-subtitle">Antrean Admisi</div>
+                  <div class="panggil-nomor">001</div>
+                  <div class="panggil-loket">Loket 1</div>
+                </div>
+
+                <!-- ANTRIAN DILAYANI -->
+                <div class="container-display">
+                  <!-- <h2 class="display-judul">ANTREAN DILAYANI</h2> -->
+                  <div class="grid-loket">
+                    <div class="display-box-antrian">
+                      <div class="display-box-header">LOKET 1</div>
+                      <div class="display-box-footer">001</div>
+                    </div>
+                    <div class="display-box-antrian">
+                      <div class="display-box-header">LOKET 2</div>
+                      <div class="display-box-footer">001</div>
+                    </div>
+                    <div class="display-box-antrian">
+                      <div class="display-box-header">LOKET 3</div>
+                      <div class="display-box-footer">001</div>
+                    </div>
+                    <div class="display-box-antrian">
+                      <div class="display-box-header">LOKET 4</div>
+                      <div class="display-box-footer">001</div>
+                    </div>
+                    <div class="display-box-antrian">
+                      <div class="display-box-header">LOKET 5</div>
+                      <div class="display-box-footer">001</div>
+                    </div>
+                    <div class="display-box-antrian">
+                      <div class="display-box-header">LOKET 6</div>
+                      <div class="display-box-footer">001</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+
+
+      </main>
+    <!-- FOOTER -->
+    <footer>
+    </footer>
+</body>
+</html>

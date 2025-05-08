@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Antrian | E-Kios</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        @php
+            $from = request()->query('from', 'default');
+            if ($from === 'px-checkin') {
+                $backUrl = url('px-checkin');
+            } elseif ($from === 'pilih-jadwaldokter') {
+                $backUrl = url('pilih-jadwaldokter');
+            } else {
+                $backUrl = url('ekios');
+            }
+        @endphp
+      <a href="{{ $backUrl }}" class="back-button">
+        &#8592;
+      </a>
+        <h1>KONFIRMASI DATA ANTREAN PASIEN</h1>
+    </header>
+    <!-- Background Image -->
+    <main>
+        <div class="confirmation-container">
+            <p>
+                Silakan cek kembali data pasien, klik "Konfirmasi" apabila sudah benar
+            </p>
+
+            <div class="confirmation-table">
+                <div class="confirmation-row">
+                    <div class="confirmation-label">NIK :</div>
+                    <div class="confirmation-value">1671XXXXXXXXXXXX</div>
+                </div>
+                <div class="confirmation-row">
+                    <div class="confirmation-label">No Kartu BPJS :</div>
+                    <div class="confirmation-value">000XXXXXXXXXXX</div>
+                </div>
+                <div class="confirmation-row">
+                    <div class="confirmation-label">No Rujukkan :</div>
+                    <div class="confirmation-value">XXXXXXXXXXXXXX</div>
+                </div>
+                <div class="confirmation-row">
+                    <div class="confirmation-label">No Rekam Medis :</div>
+                    <div class="confirmation-value">XX - XX – XX – XX</div>
+                </div>
+                <div class="confirmation-row">
+                    <div class="confirmation-label">Nama :</div>
+                    <div class="confirmation-value">Sxxx Dxxxxx Qxxxxx</div>
+                </div>
+                <div class="confirmation-row">
+                    <div class="confirmation-label">Tanggal Lahir :</div>
+                    <div class="confirmation-value">DD – MM – YYYY</div>
+                </div>
+                <div class="confirmation-row">
+                    <div class="confirmation-label">Poli :</div>
+                    <div class="confirmation-value">Klinik XXXXXX</div>
+                </div>
+                <div class="confirmation-row">
+                    <div class="confirmation-label">Dokter dan Jadwal :</div>
+                    <div class="confirmation-value">dr. XXX (Senin – Kamis 14.50–16.00 WIB)</div>
+                </div>
+            </div>
+
+            <button class="konfirmasi-button" onclick="window.location.href='print'">Konfirmasi</button>
+            <p class="note-text">Bila terjadi perbedaan data silakan menuju “Personal Care”</p>
+        </div>
+    </main>
+    <!-- FOOTER -->
+    <footer>
+    </footer>
+</body>
+</html>
