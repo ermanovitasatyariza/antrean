@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +20,35 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+
 Route::get('/', function () {
-    return view('index');
+    return view('index'); // ini menampilkan file resources/views/index.blade.php
+})->name('login'); // penting untuk redirect
+
+Route::post('/login', function (Request $request) {
+    $credentials = $request->only('username', 'password');
+
+    // Username di-database biasanya dalam kolom "email", ubah jika perlu
+    if (Auth::attempt(['name' => $credentials['username'], 'password' => $credentials['password']])) {
+        $request->session()->regenerate();
+        return redirect()->intended('/ekios'); // ubah sesuai dashboard tujuan
+    }
+
+    return back()->withErrors([
+        'username' => 'Login gagal. Username atau password salah.',
+    ]);
 });
 
 Route::get('/ekios', function () {
-    return view('ekios'); // ini akan render resources/views/ekios.blade.php
-})->name('ekios');
+    return view('ekios');
+})->middleware('auth');
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+// Route::get('/ekios', function () {
+//     return view('ekios'); // ini akan render resources/views/ekios.blade.php
+// })->name('ekios');
 
 Route::get('/px-personal', function () {
     return view('px-personal'); // ini akan render resources/views/px-personal.blade.php
