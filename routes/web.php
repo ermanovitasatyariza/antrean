@@ -31,13 +31,28 @@ Route::post('/login', function (Request $request) {
     // Username di-database biasanya dalam kolom "email", ubah jika perlu
     if (Auth::attempt(['name' => $credentials['username'], 'password' => $credentials['password']])) {
         $request->session()->regenerate();
-        return redirect()->intended('/ekios'); // ubah sesuai dashboard tujuan
+
+        // Arahkan ke halaman sesuai username
+        // revisi
+        // Arahkan ke halaman sesuai role
+        if (Auth::user()->role === 'ambil') {
+            return redirect()->intended('/ekios');
+        } else {
+            return redirect()->intended('/dashboard');
+        }
     }
 
     return back()->withErrors([
         'username' => 'Login gagal. Username atau password salah.',
     ]);
 });
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/index'); // atau halaman login kamu
+})->name('logout');
 
 Route::get('/ekios', function () {
     return view('ekios');
@@ -52,81 +67,76 @@ Route::get('/ekios', function () {
 
 Route::get('/px-personal', function () {
     return view('px-personal'); // ini akan render resources/views/px-personal.blade.php
-})->name('px-personal');
+})->middleware('auth');
 
 Route::get('/px-bpjs', function () {
     return view('px-bpjs'); // ini akan render resources/views/px-bpjs.php
-})->name('px-bpjs');
+})->middleware('auth');
 
 Route::get('/px-bpjs-lama', function () {
     return view('px-bpjs-lama'); // ini akan render resources/views/px-bpjs-lama.php
-})->name('px-bpjs-lama');
+})->middleware('auth');
 
 Route::get('/pilih-norujukan', function () {
     return view('pilih-norujukan'); // ini akan render resources/views/pilih-norujukan.php
-})->name('pilih-norujukan');
+})->middleware('auth');
 
 Route::get('/input-norm-tgllahir', function () {
     return view('input-norm-tgllahir'); // ini akan render resources/views/pilih-norujukan.php
-})->name('input-norm-tgllahir');
+})->middleware('auth');
 
 Route::get('/assesment', function () {
     return view('assesment'); // ini akan render resources/views/px-bpjs.php
-})->name('assesment');
+})->middleware('auth');
 
 Route::get('/px-checkin', function () {
     return view('px-checkin'); // ini akan render resources/views/px-bpjs.php
-})->name('px-checkin');
+})->middleware('auth');
 
 Route::get('/personal-lama', function () {
     return view('personal-lama'); // ini akan render resources/views/personal-lama.php
-})->name('personal-lama');
+})->middleware('auth');
 
 Route::get('/pilih-jadwaldokter', function () {
     return view('pilih-jadwaldokter'); // ini akan render resources/views/pilih-jadwaldokter.php
-})->name('pilih-jadwaldokter');
-
-Route::get('/pilih-jadwaldokter', function () {
-    return view('pilih-jadwaldokter'); // ini akan render resources/views/pilih-jadwaldokter.php
-})->name('pilih-jadwaldokter');
+})->middleware('auth');
 
 Route::get('/konfirmasidata', function () {
     return view('konfirmasidata'); // ini akan render resources/views/konfirmasidata.php
-})->name('konfirmasidata');
+})->middleware('auth');
 
 Route::get('/print', function () {
     return view('print'); // ini akan render resources/views/print.php
-})->name('print');
+})->middleware('auth');
 
 Route::get('/terimakasih', function () {
     return view('terimakasih'); // ini akan render resources/views/terimakasih.php
-})->name('terimakasih');
+})->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard'); // ini akan render resources/views/dashboard.php
-})->name('dashboard');
+})->middleware('auth');
 
 Route::get('/admisi-pilihloket', function () {
     return view('admisi-pilihloket'); // ini akan render resources/views/dashboard.php
-})->name('admisi-pilihloket');
+})->middleware('auth');
 
 Route::get('/admisi-panggilantreanadmisi', function () {
     return view('admisi-panggilantreanadmisi'); // ini akan render resources/views/dashboard.php
-})->name('admisi-panggilantreanadmisi');
+})->middleware('auth');
 
 Route::get('/poli-pilihpolidokterantrean', function () {
     return view('poli-pilihpolidokterantrean'); // ini akan render resources/views/dashboard.php
-})->name('poli-pilihpolidokterantrean');
+})->middleware('auth');
 
 Route::get('/poli-panggilantreanpoli', function () {
     return view('poli-panggilantreanpoli'); // ini akan render resources/views/dashboard.php
-})->name('poli-panggilantreanpoli');
+})->middleware('auth');
 
 Route::get('/display-antrean-admisi', function () {
     return view('display-antrean-admisi'); // ini akan render resources/views/dashboard.php
-})->name('display-antrean-admisi');
+})->middleware('auth');
 
 Route::get('/display-antrean-poli', function () {
     return view('display-antrean-poli'); // ini akan render resources/views/dashboard.php
-})->name('display-antrean-admisi');
-
+})->middleware('auth');
