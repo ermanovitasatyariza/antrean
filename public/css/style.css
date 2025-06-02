@@ -7,14 +7,12 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    /* font-weight: 700; */
-     /* Warna teks */
 }
 
 /* header */
-header {
+/* header {
     display: flex;
-    align-items: center;
+    align-items:center;
     justify-content: center;
     width: 100%;
     padding: 15px 20px;
@@ -22,18 +20,80 @@ header {
     position: absolute;
     top: 0;
     background-color: #265D58;
-    color: white;
-}
+    color: white; */
+/*
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; */
+/* } */
 
 /* Judul Aplikasi di Tengah */
-header h1 {
+
+/* .ekios-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: none;
+    color: #265D58;
+    position: absolute;
+    top: 0;
+    height: 80px;
+} */
+
+.dashboard-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #265D58;
+    color: white;
+    position: absolute;
+    top: 0;
+    height: 80px;
+}
+
+.header-left,
+.header-center,
+.header-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header Center (H1 di tengah) */
+.header-center h1 {
     font-size: 28px;
     text-align: center;
 }
 
+/* Header Right (H5 di kanan) */
+.header-right {
+    justify-content: flex-end;
+}
+
+.header-right h5 {
+    font-size: 18px;
+    margin: 0;
+}
+/* header h1 {
+    font-size: 28px;
+    text-align: center;
+}
+
+header h5 {
+    font-size: 28px;
+    align-items: right;
+} */
+
 /* Tombol Back di Kiri */
+
 .back-button {
-    color: #ffffff;
+    color: white;
     position: absolute;
     left: 50px;
     font-size: 36px;
@@ -43,14 +103,13 @@ header h1 {
 }
 
 .back-button:hover {
-    color: #ffffff;
+    color: white;
     transform: scale(1.5);
   }
 
 /* Tombol Logout di Kanan */
 .logout-button {
-  position: absolute;
-  right: 50px;
+  margin-left: 20px;
   color: #265486;
   font-size: 12px;
   font-weight: 600;
@@ -65,6 +124,7 @@ header h1 {
 
 .logout-button:hover {
   transform: scale(1.05);
+  background-color: rgb(218, 205, 205);
 }
 
 /* Background */
@@ -127,7 +187,7 @@ main {
     height: auto;
     padding: 25px;
     background-color: rgba(255, 243, 243, 0.7);
-    border: 1px solid #518E65;
+    /* border: 1px solid #518E65; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -143,6 +203,7 @@ main {
     align-items: center;
     position: relative;
     border-radius: 10px;
+    /* border: 1px solid #518E65; */
 }
 
 .field label {
@@ -353,7 +414,7 @@ input:not(:placeholder-shown) ~ label {
 
 /*admisi-pilihloket Page*/
 .container-petugasadmisi{
-  border: 2px solid #2a6354;
+  /* border: 2px solid #2a6354; */
   background-color: rgba(255, 255, 255, 0.75);
   /* border-radius: 10px; */
   /* margin-top: 20px; */
@@ -367,7 +428,7 @@ input:not(:placeholder-shown) ~ label {
 .container-antrian {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 50px;
   padding: 20px;
   max-width: auto;
 }
@@ -527,8 +588,8 @@ input:not(:placeholder-shown) ~ label {
   padding: 20px;
   margin-top: 50px;
   background: rgba(255, 243, 243, 0.6);
-  border-radius: 20px;
-  border: 3px solid #fff;
+  border-radius: 5px;
+  /* border: 3px solid #fff; */
   gap: 25px;
   font-family: sans-serif;
 }
@@ -542,7 +603,7 @@ input:not(:placeholder-shown) ~ label {
 
 .kotak {
   background: #fff;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   font-size: 16px;
@@ -590,7 +651,7 @@ input:not(:placeholder-shown) ~ label {
   color: #fff;
   border: none;
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
   /* align-self: flex-start; */
 }
@@ -621,7 +682,7 @@ input:not(:placeholder-shown) ~ label {
   flex-direction: row;
   gap: 50px;
   background-color: rgba(255, 243, 243, 0.68);
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 25px;
   width: 90%;
   justify-content: center;
@@ -686,7 +747,7 @@ input:not(:placeholder-shown) ~ label {
   display: flex;
   flex-direction: column;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
@@ -779,7 +840,7 @@ input:not(:placeholder-shown) ~ label {
     cursor: pointer;
     /* margin-top: 20px; */
     box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
-    margin-top: 50px;
+    margin-top: 20px;
     border: none;
 }
 
@@ -795,7 +856,7 @@ input:not(:placeholder-shown) ~ label {
     background: rgba(255, 255, 255, 0.6);
     margin-top: 100px;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1151,7 +1212,7 @@ input:not(:placeholder-shown) ~ label {
     background: rgba(255, 255, 255, 0.6);
     margin-top: 100px;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1209,12 +1270,12 @@ input:not(:placeholder-shown) ~ label {
     width: 450px;
 }
 
-/* .input-group {
+.input-group {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
-} */
+    margin-bottom: 20px;
+}
 
 .input-group h2 {
     font-size: 18px !important;
@@ -1504,7 +1565,7 @@ user-select: none;
   /* padding: 100px; */
   margin-top: 50px;
   background-color: rgba(255, 243, 243, 0.7);
-  border: 1px solid #518E65;
+  /* border: 1px solid #518E65; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1610,7 +1671,7 @@ user-select: none;
   .card {
     background: rgba(255, 255, 255, 0.9);
     padding: 30px;
-    border-radius:20px;
+    border-radius:5px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     color: #265D58;
     width: 100%;
@@ -1699,4 +1760,5 @@ footer {
 footer p {
     align-items: left;
     align-content: left;
+    justify-content: left;
 }

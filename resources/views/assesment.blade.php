@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Antrian | E-Kios</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-    <!-- HEADER -->
-    <header>
-      <a href="ekios" class="back-button">
-        &#8592;
-      </a>
-        <h1>ANTREAN | PENGISIAN ASSESMENT PASIEN</h1>
-    </header>
-
-    <!-- Background Image -->
-      <!-- MAIN CONTENT -->
-      <main>
+@extends('layouts.app')
+@section('header-left')
+    @php
+        $from = request()->query('from', 'ekios'); // default ke ekios
+        if ($from === 'px-personal') {
+            $backUrl = url('px-personal');
+        } else if ($from === 'px-bpjs') {
+            $backUrl = url('px-bpjs');
+        } else if ($from === 'ekios') {
+            $backUrl = url('ekios');
+        }
+    @endphp
+    <a href="{{ $backUrl }}" class="back-button">←</a>
+@endsection
+@section('header-center', 'PENGISIAN ASSESMENT PASIEN')
+@section('hide-logout', true)
+@section('content')
         <div class="card">
           <p class="intro-text">Silakan isi tiga pertanyaan di bawah ini :</p>
           <div class="question">
@@ -28,7 +25,6 @@
               <option>Tidak</option>
             </select>
           </div>
-
           <div class="question">
             <label for="bayi">Apakah pasien yang Anda daftarkan adalah bayi baru lahir?</label>
             <select id="bayi">
@@ -37,7 +33,6 @@
               <option>Tidak</option>
             </select>
           </div>
-
           <div class="question">
             <label for="disabilitas">Apakah pasien yang Anda daftarkan merupakan penyandang disabilitas?</label>
             <select id="disabilitas">
@@ -46,15 +41,6 @@
               <option>Tidak</option>
             </select>
           </div>
-
           <button class="submit-button-assesment" onclick="window.location.href='print'">Kirim Jawaban</button>
         </div>
-      </main>
-
-    <!-- FOOTER -->
-    <footer>
-
-    </footer>
-
-</body>
-</html>
+@endsection

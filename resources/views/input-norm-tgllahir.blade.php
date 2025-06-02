@@ -1,22 +1,26 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Antrian | Input No RM Tgl Lahir</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-    <!-- HEADER -->
-    <header>
-      <a href="pilih-norujukan" class="back-button">
-        &#8592;
-      </a>
-      <button onclick="goBack()">Kembali</button>
-      <h1>AMBIL ANTREAN PASIEN LAMA BPJS</h1>
-    </header>
-    <!-- Background Image -->
-    <main>
+@extends('layouts.app')
+@section('hide-title-dashboard', true)
+@section('header-left')
+    {{-- @php
+        $from = request()->query('from', 'pilih-norujukan');
+        // Set default agar tidak undefined
+        $backUrl = url('pilih-norujukan');
+
+        if ($from === 'pilih-norujukan') {
+            $backUrl = url('pilih-norujukan');
+        }
+    @endphp
+    <a href="{{ $backUrl }}" class="back-button">←</a> --}}
+    {{-- <a href="{{ getBackUrlFrom() }}" class="back-button">←</a> --}}
+    @php
+    $backUrl = url('pilih-norujukan');
+    @endphp
+
+    <a href="{{ $backUrl }}" class="back-button">←</a>
+@endsection
+@section('header-center', 'PASIEN LAMA BPJS')
+@section('hide-logout', true)
+@section('content')
         <div class="inputNoRMTglLhr-container">
           <!-- Kiri: Input Kode Booking -->
           <div class="inputNoRMTglLhr-left-section">
@@ -30,32 +34,40 @@
                   <div class="inputNoRMTglLhr-confirmation-value">XXXXXXXXXXXXXXXXXX</div>
               </div>
             </div>
-            <div class="input-group">
-              <h2>No Rekam Medis :</h2>
-              <p>Silakan ketik nomor rekam medis</p>
-              <div class="code-input-group">
-                <input type="text" maxlength="2" class="code-input" placeholder="00"/>
-                <span>–</span>
-                <input type="text" maxlength="2" class="code-input" placeholder="00"/>
-                <span>–</span>
-                <input type="text" maxlength="2" class="code-input" placeholder="00"/>
-                <span>–</span>
-                <input type="text" maxlength="2" class="code-input" placeholder="00"/>
-              </div>
-            </div>
-            <div class="input-group">
-              <h2>Tanggal Lahir :</h2>
-              <p>Silakan ketik tanggal lahir</p>
-              <div class="code-input-group">
-                <input type="text" maxlength="2" class="code-input" placeholder="DD"/>
-                <span>–</span>
-                <input type="text" maxlength="2" class="code-input" placeholder="DD"/>
-                <span>–</span>
-                <input type="text" maxlength="4" class="code-input" placeholder="YYYY"/>
-              </div>
-            </div>
-            <button class="inputNoRMTglLhr-cari-button" onclick="window.location.href='{{ url('pilih-jadwaldokter') }}?from=input-norm-tgllahir'">CARI</button>
-          </div>
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            <form method="POST" action="{{ route('cari-pasien') }}">
+              @csrf
+                <div class="input-group">
+                <h2>No Rekam Medis :</h2>
+                <p>Silakan ketik nomor rekam medis</p>
+                <div class="code-input-group">
+                    <input type="text" maxlength="2" name="rm1" class="code-input" placeholder="00"/>
+                    <span>–</span>
+                    <input type="text" maxlength="2" name="rm2" class="code-input" placeholder="00"/>
+                    <span>–</span>
+                    <input type="text" maxlength="2" name="rm3" class="code-input" placeholder="00"/>
+                    <span>–</span>
+                    <input type="text" maxlength="2" name="rm4" class="code-input" placeholder="00"/>
+                </div>
+                </div>
+                <div class="input-group">
+                <h2>Tanggal Lahir :</h2>
+                <p>Silakan ketik tanggal lahir</p>
+                <div class="code-input-group">
+                    <input type="text" maxlength="2" name="day" class="code-input" placeholder="DD"/>
+                    <span>–</span>
+                    <input type="text" maxlength="2" name="month" class="code-input" placeholder="DD"/>
+                    <span>–</span>
+                    <input type="text" maxlength="4" name="year" class="code-input" placeholder="YYYY"/>
+                </div>
+                </div>
+                <button type="submit" class="inputNoRMTglLhr-cari-button">CARI</button>
+            </form>
+        </div>
           <!-- Kanan: Keypad -->
           <div class="right-section">
             <div class="keypad">
@@ -73,13 +85,5 @@
             </div>
           </div>
         </div>
-      </main>
-    <!-- FOOTER -->
-    <footer>
-    </footer>
-
-  <!-- JavaScript Keypad Logic -->
-  <script src="{{ asset('js/script.js') }}"></script>
-
-</body>
-</html>
+@endsection
+{{-- <button class="inputNoRMTglLhr-cari-button" onclick="window.location.href='{{ url('pilih-poli-dokter') }}?from=input-norm-tgllahir'">CARI</button> --}}

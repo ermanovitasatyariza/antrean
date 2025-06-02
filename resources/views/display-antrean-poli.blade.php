@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Antrean | Display Antrean Poli</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
+@extends('layouts.app')
+@section('hide-title-ekios', true)
+@section('title', '| Display')
+@section('header-left')
+    @php
+        $from = request()->query('from', 'dashboard'); // default ke ekios
+        if ($from === 'dashboard') {
+            $backUrl = url('dashboard');
+        }
+    @endphp
+    <a href="{{ $backUrl }}" class="back-button">←</a>
+@endsection
+@section('header-center', 'ANTREAN POLI SEDANG DILAYANI')
+@section('content')
     <header class="dashboard-header">
       <a href="dashboard.html" class="back-button">&#8592;</a>
       <h1>ANTREAN POLI</h1>
@@ -50,11 +55,4 @@
           <div class="info-dokter">Nama Dokter</div>
           <div class="info-pasien">Nama Pasien</div>
         </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-    </footer>
-    <script src="{{ asset('js/script.js') }}"></script>
-</body>
-</html>
+@endsection

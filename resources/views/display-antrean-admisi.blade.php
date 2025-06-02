@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Antrian | Display</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-  <header class="dashboard-header">
-    <a href="dashboard" class="back-button">&#8592;</a>
-    <h1>ANTREAN ADMISI SEDANG DILAYANI</h1>
-  </header>
-    <main>
+@extends('layouts.app')
+@section('hide-title-ekios', true)
+@section('title', '| Display')
+@section('header-left')
+    @php
+        $from = request()->query('from', 'dashboard'); // default ke ekios
+        if ($from === 'dashboard') {
+            $backUrl = url('dashboard');
+        }
+    @endphp
+    <a href="{{ $backUrl }}" class="back-button">←</a>
+@endsection
+@section('header-center', 'ANTREAN ADMISI DILAYANI')
+@section('content')
         <div class="display">
             <!-- <h1 class="display-judul"></h1> -->
             <div class="display-wrapper">
@@ -55,12 +55,4 @@
                 </div>
               </div>
         </div>
-
-
-
-      </main>
-    <!-- FOOTER -->
-    <footer>
-    </footer>
-</body>
-</html>
+@endsection

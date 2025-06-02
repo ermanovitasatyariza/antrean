@@ -91,6 +91,18 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'sqlsrv_Sphaira' => [
+        'driver' => 'sqlsrv',
+        'host' => env('DB_HOST_DUA', '192.168.80.114'),
+        'port' => env('DB_PORT_DUA', '1433'),
+        'database' => env('DB_DATABASE_DUA', 'forge'),
+        'username' => env('DB_USERNAME_DUA', 'forge'),
+        'password' => env('DB_PASSWORD_DUA', ''),
+        'charset' => 'utf8',
+        'prefix' => '',
+        'prefix_indexes' => true,
+],
+
     ],
 
     /*

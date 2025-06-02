@@ -21,11 +21,15 @@
         "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
+        "files": [
+        "app/Helpers/BackUrlHelper.php"
+        ],
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         }
+
     },
     "autoload-dev": {
         "psr-4": {
@@ -59,4 +63,6 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true
+
+
 }

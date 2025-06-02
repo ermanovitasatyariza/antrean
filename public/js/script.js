@@ -33,20 +33,43 @@
     document.getElementById("petugasForm").style.display = "block";
   }
 
-  function openPagePG() {
-    const value = document.getElementById('menuSelectPetugasPanggil').value;
-    if (!value) {
-      alert("Silakan pilih menu terlebih dahulu!");
-      return;
-    }
-    if (value === "farmasi") {
-      window.location.href = "farmasi.html";
-    } else if (value === "poli") {
-      window.location.href = "poli-pilihpolidokterantrean";
-    } else if (value === "admisi") {
-      window.location.href = "admisi-pilihloket";
-    }
+//   function openPagePG() {
+//     const value = document.getElementById('menuSelectPetugasPanggil').value;
+//     if (!value) {
+//       alert("Silakan pilih menu terlebih dahulu!");
+//       return;
+//     }
+//     if (value === "farmasi") {
+//       window.location.href = "farmasi.html";
+//     } else if (value === "poli") {
+//       window.location.href = "poli-pilihpolidokterantrean";
+//     } else if (value === "admisi") {
+//       window.location.href = "admisi-pilihloket";
+//     }
+//   }
+function openPagePG() {
+  const value = document.getElementById('menuSelectPetugasPanggil').value;
+  if (!value) {
+    alert("Silakan pilih menu terlebih dahulu!");
+    return;
   }
+
+  // Tambahkan parameter navigasi (misalnya asal = dashboard)
+  const from = "dashboard";
+
+  let targetUrl = "";
+
+  if (value === "farmasi") {
+    targetUrl = `farmasi.html?from=${from}`;
+  } else if (value === "poli") {
+    targetUrl = `poli-pilihpolidokterantrean?from=${from}`;
+  } else if (value === "admisi") {
+    targetUrl = `admisi-pilihloket?from=${from}`;
+  }
+
+  // Arahkan ke URL dengan parameter
+  window.location.href = targetUrl;
+}
 
   function showFormDisplay() {
     document.getElementById("buttonDisplay").style.display = "none";
@@ -59,7 +82,6 @@
       alert("Silakan pilih menu terlebih dahulu!");
       return;
     }
-
     if (value === "farmasi") {
       window.location.href = "farmasi.html";
     } else if (value === "poli") {
@@ -68,14 +90,12 @@
       window.location.href = "display-antrean-admisi";
     }
   }
-
   // Cek apakah halaman saat ini adalah terimakasih.html
 if (window.location.pathname.endsWith("terimakasih")) {
   setTimeout(function () {
       window.location.href = "ekios";
   }, 5000); // 30 detik
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const input = document.getElementById("kodeInput");
@@ -87,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
   buttons.forEach(button => {
       button.addEventListener("click", () => {
           const key = button.getAttribute("data-key");
-
           if (key) {
               // Tambah angka ke input jika belum melebihi batas
               if (input.value.length < input.maxLength) {
@@ -97,13 +116,11 @@ document.addEventListener("DOMContentLoaded", function () {
               // Hapus 1 karakter dari belakang
               input.value = input.value.slice(0, -1);
           }
-
           // Tetap fokus di input meskipun tombol ditekan
           input.focus();
       });
   });
 });
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const inputs = document.querySelectorAll(".code-input");
@@ -159,3 +176,81 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+function updateJam() {
+        const sekarang = new Date();
+        const jam = sekarang.getHours().toString().padStart(2, '0');
+        const menit = sekarang.getMinutes().toString().padStart(2, '0');
+        const detik = sekarang.getSeconds().toString().padStart(2, '0');
+        document.getElementById('jam').textContent = ` | ${jam}:${menit}:${detik}`;
+    }
+
+    // Perbarui setiap detik
+    setInterval(updateJam, 1000);
+    updateJam(); // Panggil sekali saat load
+
+//JavaScript untuk ikon mata
+function togglePassword() {
+    var passwordInput = document.getElementById("password");
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+}
+
+$(document).ready(function() {
+    $('#cariPasienForm').on('submit', function(e) {
+        e.preventDefault(); // cegah submit default
+
+        $.ajax({
+            url: $(this).attr('action'),
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function(response) {
+                if (response.status === 'error') {
+                    $('#alert-area').html('<div class="alert alert-danger">' + response.message + '</div>');
+                } else {
+                    // Contoh: Redirect atau tampilkan data pasien
+                    window.location.href = '/pilih-poli-dokter?from=px-personal-lama';
+                }
+            },
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    // Validasi gagal
+                    let errors = xhr.responseJSON.errors;
+                    let messages = Object.values(errors).map(e => e.join(', ')).join('<br>');
+                    $('#alert-area').html('<div class="alert alert-danger">' + messages + '</div>');
+                } else {
+                    $('#alert-area').html('<div class="alert alert-danger">Terjadi kesalahan.</div>');
+                }
+            }
+        });
+    });
+});
+
+$('#cariPasienForm').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: 'POST',
+        data: $(this).serialize(),
+        success: function(response) {
+            if (response.status === 'error') {
+                $('#alert-area').html('<div class="alert alert-danger">' + response.message + '</div>');
+            } else {
+                // Redirect ke halaman Blade dengan data pasien
+                window.location.href = response.redirect_url;
+            }
+        },
+        error: function(xhr) {
+            if (xhr.status === 422) {
+                let errors = xhr.responseJSON.errors;
+                let messages = Object.values(errors).map(e => e.join(', ')).join('<br>');
+                $('#alert-area').html('<div class="alert alert-danger">' + messages + '</div>');
+            } else {
+                $('#alert-area').html('<div class="alert alert-danger">Terjadi kesalahan.</div>');
+            }
+        }
+    });
+});
