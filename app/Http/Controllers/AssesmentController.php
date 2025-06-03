@@ -44,28 +44,34 @@ class AssesmentController extends Controller
 
         $validated = $request->validate([
             'from' => 'required|string|in:px-bpjs,ekios,px-personal',
-            'usia_lebih_60' => 'required|in:0,1',
-            'bayi_baru_lahir' => 'required|in:0,1',
-            'penyandang_disabilitas' => 'required|in:0,1',
+            'usia_lebih_60' => 'required|boolean',
+            'bayi_baru_lahir' => 'required|boolean',
+            'penyandang_disabilitas' => 'required|boolean',
         ]);
 
-        $validated['usia_lebih_60'] = (int)$validated['usia_lebih_60'];
-        $validated['bayi_baru_lahir'] = (int)$validated['bayi_baru_lahir'];
-        $validated['penyandang_disabilitas'] = (int)$validated['penyandang_disabilitas'];
+        $isPrioritas = $validated['usia_lebih_60'] || $validated['bayi_baru_lahir'] || $validated['penyandang_disabilitas'];
 
-        // Cari nomor antrean terakhir untuk asal yg sama
-        $last = Assesment::where('from', $validated['from'])->max('nomor_antrean') ?? 0;
+        if ($isPrioritas) {
+            // Global nomor antrean prioritas
+            $lastPriorityNumber = Assesment::where('is_prioritas', true)->max('nomor_antrean') ?? 0;
+            $nomorAntrean = $lastPriorityNumber + 1;
+        } else {
+            // Nomor antrean biasa berdasarkan asal halaman
+            $lastNumber = Assesment::where('from', $validated['from'])
+                                    ->where('is_prioritas', false)
+                                    ->max('nomor_antrean') ?? 0;
+            $nomorAntrean = $lastNumber + 1;
+        }
 
-        // Simpan ke DB
         $assesment = Assesment::create([
             'from' => $validated['from'],
             'usia_lebih_60' => $validated['usia_lebih_60'],
             'bayi_baru_lahir' => $validated['bayi_baru_lahir'],
             'penyandang_disabilitas' => $validated['penyandang_disabilitas'],
-            'nomor_antrean' => $last + 1,
+            'is_prioritas' => $isPrioritas,
+            'nomor_antrean' => $nomorAntrean,
         ]);
 
-        // Simpan ke session
         session([
             'nomor_antrean' => $assesment->nomor_antrean,
             'from' => $assesment->from,

@@ -14,6 +14,7 @@ class Assesment extends Model
         'usia_lebih_60',
         'bayi_baru_lahir',
         'penyandang_disabilitas',
-        'nomor_antrean' // ← Tambahkan ini!
+        'nomor_antrean',
+        'is_prioritas', // ← Tambahkan ini!
     ];
 }
