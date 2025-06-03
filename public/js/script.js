@@ -198,59 +198,30 @@ function togglePassword() {
     }
 }
 
-$(document).ready(function() {
-    $('#cariPasienForm').on('submit', function(e) {
-        e.preventDefault(); // cegah submit default
 
-        $.ajax({
-            url: $(this).attr('action'),
-            method: 'POST',
-            data: $(this).serialize(),
-            success: function(response) {
-                if (response.status === 'error') {
-                    $('#alert-area').html('<div class="alert alert-danger">' + response.message + '</div>');
-                } else {
-                    // Contoh: Redirect atau tampilkan data pasien
-                    window.location.href = '/pilih-poli-dokter?from=px-personal-lama';
-                }
-            },
-            error: function(xhr) {
-                if (xhr.status === 422) {
-                    // Validasi gagal
-                    let errors = xhr.responseJSON.errors;
-                    let messages = Object.values(errors).map(e => e.join(', ')).join('<br>');
-                    $('#alert-area').html('<div class="alert alert-danger">' + messages + '</div>');
-                } else {
-                    $('#alert-area').html('<div class="alert alert-danger">Terjadi kesalahan.</div>');
-                }
-            }
-        });
-    });
-});
-
-$('#cariPasienForm').on('submit', function(e) {
+document.getElementById('cariForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    $.ajax({
-        url: $(this).attr('action'),
+    const form = this;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
         method: 'POST',
-        data: $(this).serialize(),
-        success: function(response) {
-            if (response.status === 'error') {
-                $('#alert-area').html('<div class="alert alert-danger">' + response.message + '</div>');
-            } else {
-                // Redirect ke halaman Blade dengan data pasien
-                window.location.href = response.redirect_url;
-            }
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
         },
-        error: function(xhr) {
-            if (xhr.status === 422) {
-                let errors = xhr.responseJSON.errors;
-                let messages = Object.values(errors).map(e => e.join(', ')).join('<br>');
-                $('#alert-area').html('<div class="alert alert-danger">' + messages + '</div>');
-            } else {
-                $('#alert-area').html('<div class="alert alert-danger">Terjadi kesalahan.</div>');
-            }
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'error') {
+            alert(data.message);
+        } else if (data.redirect) {
+            window.location.href = data.redirect;
         }
+    })
+    .catch(error => {
+        console.error(error);
+        alert('Terjadi kesalahan saat menghubungi server.');
     });
 });

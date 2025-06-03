@@ -98,9 +98,7 @@ Route::middleware(['auth', 'role:petugas-ambil'])->group(function () {
         return view('px-personal-lama');
     });
 
-    Route::get('/pilih-poli-dokter', function () {
-        return view('pilih-poli-dokter');
-    });
+    Route::get('/pilih-poli-dokter', [PatientController::class, 'showPoliPage'])->name('pilih-poli-dokter');
 
     Route::get('/konfirmasidata', function () {
         return view('konfirmasidata');

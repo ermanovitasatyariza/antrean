@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PatientController extends Controller
 {
@@ -85,7 +86,7 @@ class PatientController extends Controller
 
     public function cari(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
         'rm1' => 'required|string|max:2',
         'rm2' => 'required|string|max:2',
         'rm3' => 'required|string|max:2',
@@ -95,19 +96,47 @@ class PatientController extends Controller
         'year' => 'required|numeric|min:1900',
         ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Data tidak valid. Pastikan semua isian lengkap dan benar.',
+                'errors' => $validator->errors()
+            ]);
+        }
+
         $no_rm = "{$request->rm1}-{$request->rm2}-{$request->rm3}-{$request->rm4}";
         $tgl_lahir = "{$request->year}-{$request->month}-{$request->day}";
 
         $pasien = Patient::where('MedicalNo', $no_rm)
-                         ->whereDate('DateOfBirth', $tgl_lahir)
-                         ->first();
+                        ->whereDate('DateOfBirth', $tgl_lahir)
+                        ->first();
+
         if (!$pasien) {
-            return redirect()->back()->with('error', 'Pasien tidak ditemukan');
-        } else {
-            $backurl = $request->query('from', ''); // ambil "from" atau default kosong
-            return view('pilih-poli-dokter', compact('pasien', 'backurl'));
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Pasien tidak ditemukan'
+            ]);
+        }else {
+            $backurl = $request->query('from', '');
+            return response()->json([
+                'status' => 'success',
+                'redirect' => route('pilih-poli-dokter', ['from' => $backurl, 'no_rm' => $no_rm])
+            ]);
         }
         // $backurl = $request->query('from', ''); // ambil "from" atau default kosong
         // return view('pilih-poli-dokter', compact('pasien', 'backurl'));
+    }
+
+    public function showPoliPage(Request $request)
+    {
+        $no_rm = $request->query('no_rm');
+        $backurl = $request->query('from', '');
+
+        $pasien = Patient::where('MedicalNo', $no_rm)->first();
+        if (!$pasien) {
+            return redirect()->back()->with('error', 'Pasien tidak ditemukan.');
+        }
+
+        return view('pilih-poli-dokter', compact('pasien', 'backurl'));
     }
 }

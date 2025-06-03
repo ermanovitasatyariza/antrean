@@ -27,7 +27,7 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <form method="POST" action="{{ route('cari-pasien', ['from' => 'px-personal-lama']) }}">
+            <form method="POST" id="cariForm" action="{{ route('cari-pasien', ['from' => 'px-personal-lama']) }}">
               @csrf
                 <div class="input-group">
                     <h2>No Rekam Medis :</h2>
