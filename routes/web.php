@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\AssesmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ use App\Http\Controllers\PatientController;
 
 Route::get('/', function () {
     return view('index'); // ini menampilkan file resources/views/index.blade.php
-})->name('login'); // penting untuk redirect
+})->name('login.form'); // penting untuk redirect
 
 Route::get('/server-time', function () {
     return response()->json([
@@ -86,8 +87,19 @@ Route::middleware(['auth', 'role:petugas-ambil'])->group(function () {
         return view('input-norm-tgllahir');
     });
 
-    Route::get('/assesment', function () {
-        return view('assesment');
+    // Route::get('/assesment', function () {
+    //     return view('assesment');
+    // });
+
+    Route::get('/assesment', [AssesmentController::class, 'create'])->name('assesment.form');
+
+    Route::post('/assesment', [AssesmentController::class, 'store'])->name('assesment.store');
+
+    Route::get('/print', function () {
+        if (!session('nomor_antrean')) {
+            return redirect()->route('assesment.form'); // agar tidak buka print tanpa antrean
+        }
+        return view('print');
     });
 
     Route::get('/px-checkin', function () {
@@ -102,10 +114,6 @@ Route::middleware(['auth', 'role:petugas-ambil'])->group(function () {
 
     Route::get('/konfirmasidata', function () {
         return view('konfirmasidata');
-    });
-
-    Route::get('/print', function () {
-        return view('print');
     });
 
     Route::get('/terimakasih', function () {

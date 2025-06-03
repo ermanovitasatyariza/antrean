@@ -15,32 +15,47 @@
 @section('header-center', 'PENGISIAN ASSESMENT PASIEN')
 @section('hide-logout', true)
 @section('content')
-        <div class="card">
-          <p class="intro-text">Silakan isi tiga pertanyaan di bawah ini :</p>
-          <div class="question">
-            <label for="usia">Apakah usia pasien yang Anda daftarkan lebih dari 60 tahun?</label>
-            <select id="usia">
-              <option disabled selected>Pilih Jawaban </option>
-              <option>Ya</option>
-              <option>Tidak</option>
-            </select>
-          </div>
-          <div class="question">
-            <label for="bayi">Apakah pasien yang Anda daftarkan adalah bayi baru lahir?</label>
-            <select id="bayi">
-              <option disabled selected>Pilih Jawaban </option>
-              <option>Ya</option>
-              <option>Tidak</option>
-            </select>
-          </div>
-          <div class="question">
-            <label for="disabilitas">Apakah pasien yang Anda daftarkan merupakan penyandang disabilitas?</label>
-            <select id="disabilitas">
-              <option disabled selected>Pilih Jawaban </option>
-              <option>Ya</option>
-              <option>Tidak</option>
-            </select>
-          </div>
-          <button class="submit-button-assesment" onclick="window.location.href='print'">Kirim Jawaban</button>
+    <div class="card">
+    <p class="intro-text">Silakan isi tiga pertanyaan di bawah ini :</p>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+    @endif
+        <form method="POST" action="{{ route('assesment.store') }}">
+        @csrf
+        <input type="hidden" name="from" value="{{ $from }}">
+
+            <div class="question">
+                <label for="usia">Apakah usia pasien yang Anda daftarkan lebih dari 60 tahun?</label>
+                <select id="usia" name="usia_lebih_60" required>
+                <option disabled selected>Pilih Jawaban </option>
+                <option value="1">Ya</option>
+                <option value="0">Tidak</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="bayi">Apakah pasien yang Anda daftarkan adalah bayi baru lahir?</label>
+                <select id="bayi" name="bayi_baru_lahir" required>
+                <option disabled selected>Pilih Jawaban </option>
+                <option value="1">Ya</option>
+                <option value="0">Tidak</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="disabilitas">Apakah pasien yang Anda daftarkan merupakan penyandang disabilitas?</label>
+                <select id="disabilitas" name="penyandang_disabilitas" required>
+                <option disabled selected>Pilih Jawaban </option>
+                <option value="1">Ya</option>
+                <option value="0">Tidak</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-button-assesment">Kirim Jawaban</button>
+            </div>
+    </form>
 @endsection
