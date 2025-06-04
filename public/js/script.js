@@ -33,20 +33,6 @@
     document.getElementById("petugasForm").style.display = "block";
   }
 
-//   function openPagePG() {
-//     const value = document.getElementById('menuSelectPetugasPanggil').value;
-//     if (!value) {
-//       alert("Silakan pilih menu terlebih dahulu!");
-//       return;
-//     }
-//     if (value === "farmasi") {
-//       window.location.href = "farmasi.html";
-//     } else if (value === "poli") {
-//       window.location.href = "poli-pilihpolidokterantrean";
-//     } else if (value === "admisi") {
-//       window.location.href = "admisi-pilihloket";
-//     }
-//   }
 function openPagePG() {
   const value = document.getElementById('menuSelectPetugasPanggil').value;
   if (!value) {
@@ -90,6 +76,7 @@ function openPagePG() {
       window.location.href = "display-antrean-admisi";
     }
   }
+
   // Cek apakah halaman saat ini adalah terimakasih.html
 if (window.location.pathname.endsWith("terimakasih")) {
   setTimeout(function () {
@@ -198,6 +185,25 @@ function togglePassword() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const button = document.querySelector('.panggil-button');
+    const waktuPanggil = document.getElementById('waktu-panggil');
+
+    if (button && waktuPanggil) {
+        button.addEventListener('click', function () {
+            const now = new Date();
+            const formatted = now.toLocaleString('id-ID', {
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit'
+            });
+
+            waktuPanggil.textContent = formatted;
+        });
+    } else {
+        console.warn("Element '.panggil-button' atau '#waktu-panggil' tidak ditemukan.");
+    }
+});
+
 
 document.getElementById('cariForm').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -225,3 +231,5 @@ document.getElementById('cariForm').addEventListener('submit', function(e) {
         alert('Terjadi kesalahan saat menghubungi server.');
     });
 });
+
+

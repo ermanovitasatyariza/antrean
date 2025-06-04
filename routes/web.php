@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AssesmentController;
+use App\Http\Controllers\PanggilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,9 +133,7 @@ Route::middleware(['auth', 'role:petugas-panggil'])->group(function () {
         return view('admisi-pilihloket');
     });
 
-    Route::get('/admisi-panggil-loket1', function () {
-        return view('admisi-panggil-loket1');
-    });
+    Route::get('/admisi-panggil-loket1', [PanggilController::class, 'panggilAdmisi']);
 
     Route::get('/poli-pilihpolidokterantrean', function () {
         return view('poli-pilihpolidokterantrean');

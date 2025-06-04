@@ -12,18 +12,31 @@
 @endsection
 @section('header-center', 'PANGGIL ANTREAN ADMISI')
 @section('content')
+
+        @php
+            $labelPasien = ucwords(str_replace('-', ' ', $pasien));
+        @endphp
+
+        @php
+            $start = \Carbon\Carbon::parse($created_at);
+            $now = \Carbon\Carbon::now();
+            $diff = $now->diff($start);
+            $lamaTunggu = sprintf('%02d:%02d:%02d', $diff->h, $diff->i, $diff->s);
+        @endphp
+
     <div class="container-loketpanggil">
         <div class="box-kiri">
             <div class="latar">
                 <div class="latar-content">
-                <strong>Nomor Antrian Yang Sedang Dilayani</strong><br>
-                <strong>Loket : 1 .: Pasien Baru BPJS :. </strong>
-                <div class="nomor-antrian">PB-001</div>
+                    <strong>Nomor Antrian Dipanggil</strong>
+                    <strong>Loket {{ $loket }} - {{ $labelPasien }}</strong>
+                    {{-- <strong> </strong> --}}
+                    <div class="nomor-antrian-panggil">{{ $nomor_antrean }}</div>
                 </div>
                 <div class="info-waktu">
-                <div><strong>Waktu Panggil</strong> : HH:MM:SS</div>
-                <div><strng>Waktu Ambil</strong> : HH:MM:SS</div>
-                <div><strong>Lama Tunggu</strong> : HH:MM:SS</div>
+                    <div><strong>Waktu Panggil</strong><br><span id="waktu-panggil">-</span></div>
+                    <div><strong>Waktu Ambil</strong><br>{{ $created_at->format('d/m/Y H:i:s') }}</div>
+                    <div><strong>Lama Tunggu</strong><br>{{ $lamaTunggu }}</div>
                 </div>
             </div>
         </div>
@@ -33,7 +46,7 @@
         <div class="options">
             <label><input type="radio" name="aksi" value="selanjutnya">Selanjutnya</label>
             <label><input type="radio" name="aksi" value="lewati">Lewati</label>
-            <button class="panggil-button">Panggil Berikutnya</button>
+            <button type="button" class="panggil-button">Panggil</button>
         </div>
         </div>
     </div>

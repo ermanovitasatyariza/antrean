@@ -34,8 +34,8 @@
             <option value="dr-budi">dr. Budi - Selasa 10:00</option>
             <option value="dr-citra">dr. Citra - Rabu 13:00</option>
             </select>
-            </div>
-            <button class="btn-panggil" onclick="window.location.href='{{ url('poli-panggilantreanpoli') }}?from=poli-pilihpolidokterantrean'">Selanjutnya</button>
         </div>
+            <button class="btn-panggil" onclick="window.location.href='{{ url('poli-panggilantreanpoli') }}?from=poli-pilihpolidokterantrean'">Selanjutnya</button>
+    </div>
     </div>
 @endsection

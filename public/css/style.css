@@ -472,7 +472,7 @@ input:not(:placeholder-shown) ~ label {
   display: flex;
   justify-content: space-between;
   background-color: rgba(255, 243, 243, 0.68);
-  border: 3px solid #FFFFFF;
+  /* border: 3px solid #FFFFFF; */
   border-radius: 20px;
   width: 90%;
   padding: 20px;
@@ -489,7 +489,7 @@ input:not(:placeholder-shown) ~ label {
   flex-direction: column;
   justify-content: space-between; /* <-- ini baru */
   height: 100%; /* <-- supaya full tinggi dalam box */
-  padding: 10px; /* opsional, biar gak terlalu mepet */
+  padding: 50px; /* opsional, biar gak terlalu mepet */
   box-sizing: border-box;
 }
 
@@ -520,10 +520,11 @@ input:not(:placeholder-shown) ~ label {
   font-size: 18px;
 }
 
-.nomor-antrian {
-  font-size: 60px;
+.nomor-antrian-panggil {
+  font-size: 50px;
   font-weight: bold;
-  margin: 10px 0;
+  /* color: red; */
+  margin: 0 0;
 }
 
 .info-waktu {

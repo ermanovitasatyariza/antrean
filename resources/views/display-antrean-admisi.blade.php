@@ -12,6 +12,7 @@
 @endsection
 @section('header-center', 'ANTREAN ADMISI DILAYANI')
 @section('content')
+
         <div class="display">
             <!-- <h1 class="display-judul"></h1> -->
             <div class="display-wrapper">
