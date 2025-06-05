@@ -17,6 +17,7 @@ class PanggilController extends Controller
         $mapping = [
             'Pasien Baru BPJS' => 'px-bpjs',
             'Pasien Asuransi Lainnya' => 'ekios',
+            'Pasien Baru Umum' => 'px-personal',
             'Pasien Prioritas' => 'prioritas',
         ];
 

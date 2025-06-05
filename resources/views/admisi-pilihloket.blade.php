@@ -22,7 +22,7 @@
                 </button>
             </div>
             <div class="box-antrian">
-                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=2&pasien=Pasien Baru Lama'">
+                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=2&pasien=Pasien Baru Umum'">
                     <div class="box-header">Loket 2</div>
                     <div class="box-footer">Pasien Baru Umum</div>
                 </button>
