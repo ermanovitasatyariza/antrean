@@ -10,7 +10,8 @@ class Assesment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'from',
+        'payer',
+        'status_pasien',
         'usia_lebih_60',
         'bayi_baru_lahir',
         'penyandang_disabilitas',

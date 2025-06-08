@@ -1094,10 +1094,59 @@ input:not(:placeholder-shown) ~ label {
 
 
 /*Print Page*/
+.ticket-box {
+    margin-top: 60px;
+    margin-bottom: 10px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0px 0px 14px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-box hr {
+    height: 2px;
+    background-color: black;
+    border: none;
+}
+
+.ticket-title {
+    font-size: 21px;
+    font-weight: bold;
+    /* margin-bottom: 1px; */
+    color: #000;
+}
+
+.ticket-number {
+    font-size: 56px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #000;
+}
+
+.ticket-subtitle {
+    font-size: 20px;
+    color: #333;
+}
+
+.ticket-time {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.ticket-warning {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #333;
+}
+
 .print {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
 }
 
 .print-container {
@@ -1108,7 +1157,7 @@ input:not(:placeholder-shown) ~ label {
     text-align: center; /* GANTI dari center ke left */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     height: auto;
-    margin-top: 90px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center; /* agar isi di tengah */
@@ -1762,4 +1811,76 @@ footer p {
     align-items: left;
     align-content: left;
     justify-content: left;
+}
+
+
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        margin: 0;
+    }
+
+    @page {
+        size: 80mm auto;
+        margin: 0;
+    }
+
+    /* Sembunyikan semua kecuali ticket-box */
+    body * {
+        visibility: hidden;
+    }
+
+    .ticket-box, .ticket-box * {
+        visibility: visible;
+    }
+
+    .ticket-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 80mm;
+        padding: 20px;
+        background: white;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .ticket-box hr {
+        height: 2px;
+        background-color: black;
+        border: none;
+        margin: 10px 0;
+    }
+
+    .ticket-title {
+        font-size: 14pt;
+        font-weight: bold;
+    }
+
+    .ticket-time {
+        font-size: 10pt;
+        margin: 4px 0;
+    }
+
+    .ticket-number {
+        font-size: 32pt;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .ticket-subtitle,
+    .ticket-warning {
+        font-size: 9pt;
+        margin: 4px 0;
+    }
+
+    .ticket-warning {
+        font-size: 7pt;
+        margin-top: 10px;
+    }
+
+    .no-print {
+        display: none !important;
+    }
 }

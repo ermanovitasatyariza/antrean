@@ -15,7 +15,7 @@ class CreateAssesmentsTable extends Migration
     {
         Schema::create('assesments', function (Blueprint $table) {
             $table->id();
-            $table->string('from'); // px-bpjs, px-personal, ekios
+            $table->string('payer'); // px-bpjs, px-personal, ekios
             $table->boolean('usia_lebih_60')->default(0);
             $table->boolean('bayi_baru_lahir')->default(0);
             $table->boolean('penyandang_disabilitas')->default(0);

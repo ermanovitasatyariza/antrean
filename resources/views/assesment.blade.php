@@ -2,12 +2,16 @@
 @section('header-left')
     @php
         $from = request()->query('from', 'ekios'); // default ke ekios
+        $status_pasien = 'baru';
         if ($from === 'px-personal') {
             $backUrl = url('px-personal');
+            $payer = 'personal';
         } else if ($from === 'px-bpjs') {
             $backUrl = url('px-bpjs');
+            $payer = 'bpjs';
         } else if ($from === 'ekios') {
             $backUrl = url('ekios');
+            $payer = 'asuransi-lainnya';
         }
     @endphp
     <a href="{{ $backUrl }}" class="back-button">←</a>
@@ -29,8 +33,8 @@
     @endif
         <form method="POST" action="{{ route('assesment.store') }}">
         @csrf
-        <input type="hidden" name="from" value="{{ $from }}">
-
+        <input type="hidden" name="status_pasien" value="{{ $status_pasien }}">
+        <input type="hidden" name="payer" value="{{ $payer }}">
             <div class="question">
                 <label for="usia">Apakah usia pasien yang Anda daftarkan lebih dari 60 tahun?</label>
                 <select id="usia" name="usia_lebih_60" required>

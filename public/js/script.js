@@ -232,4 +232,12 @@ document.getElementById('cariForm').addEventListener('submit', function(e) {
     });
 });
 
+//print antrean
+function printAndRedirect() {
+    // Memastikan redireksi hanya terjadi setelah selesai print
+    window.onafterprint = function () {
+        window.location.href = 'terimakasih';
+    };
 
+    window.print();
+}

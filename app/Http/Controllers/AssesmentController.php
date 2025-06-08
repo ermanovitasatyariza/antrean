@@ -43,7 +43,9 @@ class AssesmentController extends Controller
     {
 
         $validated = $request->validate([
-            'from' => 'required|string|in:px-bpjs,ekios,px-personal',
+            // 'from' => 'required|string|in:px-bpjs,ekios,px-personal',
+            'payer' => 'required|string|in:personal,bpjs,asuransi-lainnya',
+            'status_pasien' => 'required|string|in:baru,lama',
             'usia_lebih_60' => 'required|boolean',
             'bayi_baru_lahir' => 'required|boolean',
             'penyandang_disabilitas' => 'required|boolean',
@@ -57,14 +59,15 @@ class AssesmentController extends Controller
             $nomorAntrean = $lastPriorityNumber + 1;
         } else {
             // Nomor antrean biasa berdasarkan asal halaman
-            $lastNumber = Assesment::where('from', $validated['from'])
+            $lastNumber = Assesment::where('payer', $validated['payer'])
                                     ->where('is_prioritas', false)
                                     ->max('nomor_antrean') ?? 0;
             $nomorAntrean = $lastNumber + 1;
         }
 
         $assesment = Assesment::create([
-            'from' => $validated['from'],
+            'payer' => $validated['payer'],
+            'status_pasien' => $validated['status_pasien'],
             'usia_lebih_60' => $validated['usia_lebih_60'],
             'bayi_baru_lahir' => $validated['bayi_baru_lahir'],
             'penyandang_disabilitas' => $validated['penyandang_disabilitas'],
@@ -74,7 +77,10 @@ class AssesmentController extends Controller
 
         session([
             'nomor_antrean' => $assesment->nomor_antrean,
-            'from' => $assesment->from,
+            'payer' => $assesment->payer,
+            'status_pasien' => $assesment->status_pasien,
+            'created_at' => $assesment->created_at,
+            'is_prioritas' => $assesment->is_prioritas
         ]);
 
         return redirect('/print');
