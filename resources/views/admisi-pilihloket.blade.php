@@ -16,37 +16,37 @@
         {{-- <p>Pilih Jenis Loket dan Jenis Antrean Pasien</p> --}}
         <div class="container-antrian">
             <div class="box-antrian">
-                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=1&pasien=Pasien Baru BPJS'">
+                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=1&payer=bpjs&status_pasien=baru'">
                     <div class="box-header">Loket 1</div>
                     <div class="box-footer">Pasien Baru BPJS</div>
                 </button>
             </div>
             <div class="box-antrian">
-                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=2&pasien=Pasien Baru Umum'">
+                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=2&payer=personal&status_pasien=baru'">
                     <div class="box-header">Loket 2</div>
                     <div class="box-footer">Pasien Baru Umum</div>
                 </button>
             </div>
             <div class="box-antrian">
-                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=3&pasien=Pasien Asuransi Lainnya'">
+                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=3&payer=asuransi-lainnya&status_pasien=baru'">
                     <div class="box-header">Loket 3</div>
                     <div class="box-footer">Pasien Asuransi Lainnya</div>
                 </button>
             </div>
             <div class="box-antrian">
-                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=4&pasien=Pasien Lama BPJS'">
+                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=4&payer=bpjs&status_pasien=lama'">
                     <div class="box-header">Loket 4</div>
                     <div class="box-footer">Pasien Lama BPJS</div>
                 </button>
             </div>
             <div class="box-antrian">
-                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=5&pasien=Pasien Lama Umum'">
+                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=5&payer=personal&status_pasien=lama'">
                     <div class="box-header">Loket 5</div>
                     <div class="box-footer">Pasien Lama Umum</div>
                 </button>
             </div>
             <div class="box-antrian">
-                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=6&pasien=Pasien Prioritas'">
+                <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=6&is_prioritas=1'">
                     <div class="box-header">Loket 6</div>
                     <div class="box-footer">Pasien Prioritas</div>
                 </button>

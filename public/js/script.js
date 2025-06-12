@@ -27,7 +27,6 @@
   });
 
   ///Dashboard Page
-
   function showFormPG() {
     document.getElementById("buttonPG").style.display = "none";
     document.getElementById("petugasForm").style.display = "block";
@@ -238,6 +237,38 @@ function printAndRedirect() {
     window.onafterprint = function () {
         window.location.href = 'terimakasih';
     };
-
     window.print();
+}
+
+function tampilkanLewati() {
+        // Tampilkan bagian input nomor dilewati
+        document.getElementById("bagian-lewati").style.display = "block";
+
+        // Ambil nomor antrean dari elemen di halaman
+        const nomorAntrean = document.querySelector('.nomor-antrian-panggil').textContent.trim();
+
+        // Buat path ke file audio
+        const audioPath = `/audio/${nomorAntrean}.mp3`;
+
+        // Setel audio dan mainkan
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = audioPath;
+        audioPlayer.play().catch(error => {
+            console.error("Gagal memutar audio:", error);
+        });
+}
+
+function panggilUlang() {
+        // Ambil nomor antrean dari elemen di halaman
+        const nomorAntrean = document.querySelector('.nomor-antrian-panggil').textContent.trim();
+
+        // Buat path ke file audio
+        const audioPath = `/audio/${nomorAntrean}.mp3`;
+
+        // Setel audio dan mainkan
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.src = audioPath;
+        audioPlayer.play().catch(error => {
+            console.error("Gagal memutar audio:", error);
+        });
 }

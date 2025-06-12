@@ -550,6 +550,12 @@ input:not(:placeholder-shown) ~ label {
   border-radius: 10px;
 }
 
+.box-kanan > div > div {
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 .options {
   display: flex;
   flex-direction: column;
@@ -581,6 +587,56 @@ input:not(:placeholder-shown) ~ label {
 .panggil-button:hover {
   background-color: #1f3d5e; /* Sedikit lebih gelap saat hover */
 }
+
+
+.selesai-button {
+  background-color: #3EA99F;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: auto;
+  align-self: center;
+  /* box-shadow: 4px 4px 10px rgba(0,0,0,0.3); */
+}
+
+.selesai-button:hover {
+  background-color: #369289; /* Sedikit lebih gelap saat hover */
+}
+
+.ulang-button {
+  background-color: #2B547E;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: auto;
+  align-self: center;
+  /* box-shadow: 4px 4px 10px rgba(0,0,0,0.3); */
+}
+
+.ualng-button:hover {
+  background-color: #1f3d5e; /* Sedikit lebih gelap saat hover */
+}
+
+.selanjutnya-button {
+  background-color: #2B547E;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: auto;
+  align-self: center;
+  /* box-shadow: 4px 4px 10px rgba(0,0,0,0.3); */
+}
+
+.selanjutnya-button:hover {
+  background-color: #1f3d5e; /* Sedikit lebih gelap saat hover */
+}
+
 
 /*Poli panggil antrean Page*/
 .container-loket {

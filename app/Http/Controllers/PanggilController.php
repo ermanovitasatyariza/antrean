@@ -11,34 +11,40 @@ class PanggilController extends Controller
     public function panggilAdmisi(Request $request)
     {
         $loket = $request->query('loket');
-        $pasien = $request->query('pasien');
+        $payer = $request->query('payer');
+        $status_pasien = $request->query('status_pasien');
+        $is_prioritas = $request->query('is_prioritas');
 
-        // Mapping jenis pasien ke nilai from
-        $mapping = [
-            'Pasien Baru BPJS' => 'px-bpjs',
-            'Pasien Asuransi Lainnya' => 'ekios',
-            'Pasien Baru Umum' => 'px-personal',
-            'Pasien Prioritas' => 'prioritas',
-        ];
+        
 
-        $key = $mapping[$pasien] ?? null;
+        $query = Assesment::query();
 
-        if ($key === 'prioritas') {
-            $antrian = Assesment::where('is_prioritas', true)
-                        ->orderBy('created_at')
-                        ->first();
-        } elseif ($key) {
-            $antrian = Assesment::where('from', $key)
-                        ->where('is_prioritas', false)
-                        ->orderBy('created_at')
-                        ->first();
+        if ($is_prioritas) {
+            $query->where('is_prioritas', true);
         } else {
-            $antrian = null;
+            $query->where('is_prioritas', false)
+                ->where('payer', $payer)
+                ->where('status_pasien', $status_pasien);
         }
 
-        $nomor_antrean = $antrian ? $antrian->nomor_antrean : 'Tidak ada antrean';
-        $created_at = $antrian ? $antrian->created_at : null;
+        // Simpan antrean terakhir dipanggil di session untuk navigasi "selanjutnya"
+        $lastId = session('last_antrian_id');
 
-        return view('admisi-panggil-loket1', compact('loket', 'pasien', 'nomor_antrean','created_at'));
+        if ($lastId) {
+            $query->where('id', '>', $lastId);
+        }
+
+        $antrian = $query->orderBy('id')->first();
+
+        if ($antrian) {
+            session(['last_antrian_id' => $antrian->id]);
+            $nomor_antrean = $antrian->nomor_antrean;
+            $created_at = $antrian->created_at;
+        } else {
+            $nomor_antrean = 'Tidak ada antrean';
+            $created_at = null;
+        }
+
+        return view('admisi-panggil-loket1', compact('loket', 'payer', 'status_pasien', 'nomor_antrean', 'created_at'));
     }
 }
