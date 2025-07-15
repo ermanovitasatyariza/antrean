@@ -9,7 +9,11 @@
             <hr>
             <h1 class="ticket-number">{{ ucwords(session('nomor_antrean')) }}</h1>
             @if(session('is_prioritas'))
-                <p class="ticket-time">Loket Prioritas</p>
+                <p class="ticket-subtitle">Loket Prioritas</p>
+            @elseif(session('namasubspesialis'))
+                <p class="ticket-warning">Spesialis/Subspesialis</p>
+                <p class="ticket-subtitle">{{ ucwords(session('namasubspesialis')) }}</p>
+                <p class="ticket-subtitle">{{ ucwords(session('namadokter')) }} ( {{ ucwords(session('jadwal')) }} )</p>
             @else
                 <p class="ticket-subtitle">Loket Pasien {{ ucwords(session('status_pasien')) }} {{ ucwords(session('payer')) }}</p>
             @endif

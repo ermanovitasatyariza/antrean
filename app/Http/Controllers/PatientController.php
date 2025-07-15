@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 
 class PatientController extends Controller
 {
@@ -131,12 +134,46 @@ class PatientController extends Controller
     {
         $no_rm = $request->query('no_rm');
         $backurl = $request->query('from', '');
+        $payer = $request->query('payer');
 
         $pasien = Patient::where('MedicalNo', $no_rm)->first();
         if (!$pasien) {
             return redirect()->back()->with('error', 'Pasien tidak ditemukan.');
         }
 
-        return view('pilih-poli-dokter', compact('pasien', 'backurl'));
+        // Cache 1 jam untuk daftar poli
+        $daftarPoli = Cache::remember('bpjs_daftar_poli', 3600, function () {
+            $response = Http::get('http://192.168.80.119/service-bpjs/api/antrean/bpjs/ref/poli');
+            if ($response->successful()) {
+                return collect($response->json()['data'] ?? [])
+                    ->groupBy('kdpoli')
+                    ->map(fn($items) => $items->first())
+                    ->sortBy('nmpoli')
+                    ->values()
+                    ->all();
+            }
+            return [];
+        });
+
+        return view('pilih-poli-dokter', compact('pasien', 'backurl', 'daftarPoli'));
+    }
+
+    public function showAntreanPoliPage(Request $request)
+    {
+        // Cache daftar poli dari BPJS selama 1 jam
+        $daftarPoli = Cache::remember('bpjs_daftar_poli', 3600, function () {
+            $response = Http::get('http://192.168.80.119/service-bpjs/api/antrean/bpjs/ref/poli');
+            if ($response->successful()) {
+                return collect($response->json()['data'] ?? [])
+                    ->groupBy('kdpoli')
+                    ->map(fn($items) => $items->first())
+                    ->sortBy('nmpoli')
+                    ->values()
+                    ->all();
+            }
+            return [];
+        });
+
+        return view('poli-pilihpolidokterantrean', compact('daftarPoli'));
     }
 }

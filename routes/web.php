@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\AssesmentController;
 use App\Http\Controllers\PanggilController;
+use App\Http\Controllers\JadwalDokterController;
+use App\Http\Controllers\AntreanPoliController;
+use App\Http\Controllers\PoliController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,9 +91,8 @@ Route::middleware(['auth', 'role:petugas-ambil'])->group(function () {
         return view('input-norm-tgllahir');
     });
 
-    // Route::get('/assesment', function () {
-    //     return view('assesment');
-    // });
+    Route::get('/jadwal-pilih-poli', [JadwalDokterController::class, 'pilihPoli'])->name('jadwal.pilih-poli');
+    Route::get('/jadwal-dokter/list', [JadwalDokterController::class, 'listByPoli'])->name('jadwal.list');
 
     Route::get('/assesment', [AssesmentController::class, 'create'])->name('assesment.form');
 
@@ -112,10 +114,20 @@ Route::middleware(['auth', 'role:petugas-ambil'])->group(function () {
     });
 
     Route::get('/pilih-poli-dokter', [PatientController::class, 'showPoliPage'])->name('pilih-poli-dokter');
+    Route::get('/jadwal-dokter-by-poli', [JadwalDokterController::class, 'dokterByPoliAjax']);
+
 
     Route::get('/konfirmasidata', function () {
         return view('konfirmasidata');
     });
+
+    Route::post('/konfirmasidata', function (Request $request) {
+        return view('konfirmasidata', [
+            'data' => $request->all()
+        ]);
+    });
+
+    Route::post('/antrean-poli/store', [AntreanPoliController::class, 'store'])->name('antrean-poli.store');
 
     Route::get('/terimakasih', function () {
         return view('terimakasih');
@@ -135,13 +147,14 @@ Route::middleware(['auth', 'role:petugas-panggil'])->group(function () {
 
     Route::get('/admisi-panggil-loket1', [PanggilController::class, 'panggilAdmisi']);
 
-    Route::get('/poli-pilihpolidokterantrean', function () {
-        return view('poli-pilihpolidokterantrean');
-    });
+    Route::get('/poli-pilihpolidokterantrean', [PatientController::class, 'showAntreanPoliPage']);
 
-    Route::get('/poli-panggilantreanpoli', function () {
-        return view('poli-panggilantreanpoli');
-    });
+    Route::post('/set-session-poli', [PoliController::class, 'setSession'])->name('set.session.poli');
+
+    Route::get('/poli-panggilantreanpoli', [AntreanPoliController::class, 'tampilAntreanSedangDilayani']);
+    // Route::get('/poli-panggilantreanpoli', function () {
+    //     return view('poli-panggilantreanpoli');
+    // });
 
     Route::get('/display-antrean-admisi', function () {
         return view('display-antrean-admisi');

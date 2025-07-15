@@ -1,7 +1,7 @@
 /* Import font Poppins dari Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
-/* Reset dasar */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -9,86 +9,96 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* header */
-/* header {
+/* WRAPPER UTAMA: Menyusun header, body, footer */
+.page-wrapper {
     display: flex;
-    align-items:center;
-    justify-content: center;
-    width: 100%;
-    padding: 15px 20px;
-    background: transparent;
-    position: absolute;
-    top: 0;
-    background-color: #265D58;
-    color: white; */
-/*
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start; */
-/* } */
-
-/* Judul Aplikasi di Tengah */
-
-/* .ekios-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 15px 20px;
-    background-color: none;
-    color: #265D58;
-    position: absolute;
-    top: 0;
-    height: 80px;
-} */
-
-.dashboard-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 15px 20px;
-    background-color: #265D58;
-    color: white;
-    position: absolute;
-    top: 0;
-    height: 80px;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.header-left,
-.header-center,
-.header-right {
+/* HEADER */
+header.dashboard-header {
+    background-color: #265D58;
+    color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-shrink: 0;
+}
+
+.header-left, .header-center, .header-right {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* Header Center (H1 di tengah) */
-.header-center h1 {
-    font-size: 28px;
-    text-align: center;
-}
-
-/* Header Right (H5 di kanan) */
 .header-right {
     justify-content: flex-end;
 }
 
-.header-right h5 {
-    font-size: 18px;
-    margin: 0;
-}
-/* header h1 {
-    font-size: 28px;
-    text-align: center;
+/* JAM & LOGOUT */
+.logout-button {
+    margin-left: 20px;
+    background-color: rgba(255, 243, 243);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-header h5 {
-    font-size: 28px;
-    align-items: right;
-} */
+.logout-button:hover {
+    background-color: #ccc;
+    transform: scale(1.05);
+}
+
+/* LAYOUT UTAMA */
+.layout-container {
+    display: flex;
+    flex: 1;
+}
+
+/* KONTEN UTAMA */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/images/bg.jpg') center center no-repeat;
+    background-size: cover;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: rgba(40, 93, 87, 0.5);
+    padding: 20px 10px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sidebar button {
+    background-color: white;
+    color: #285D57;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.sidebar button:hover {
+    background-color: #e0e0e0;
+}
 
 /* Tombol Back di Kiri */
 
@@ -127,58 +137,25 @@ header h5 {
   background-color: rgb(218, 205, 205);
 }
 
-/* Background */
-body {
-    min-height: 100vh;  /* Agar background menutupi seluruh layar */
-    width: 100vw;
+/* FOOTER */
+footer {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    background: linear-gradient(to bottom, #D9D9D9 0%, #ffffff 100%);
-    }
-
-/* BODY (Background Image) */
-main {
-    height: 80vh;
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: url('/images/bg.jpg') center/100% 100% no-repeat;
-    position: relative;
+    height: 10vh;
+    background-color: white;
+    padding: 0 20px;
+    width: 100%;
+    flex-shrink: 0;
 }
 
-/* .dashboard-header {
-  background-color: #285D57;
-  height: 80px;
-  color: white !important;
-} */
-
-/* Tombol Back di Kiri */
-/* .back-dashboard {
-  position: absolute;
-  left: 50px;
-  font-size: 36px;
-  font-weight: 900;
-  cursor: pointer;
-  color: white;
+footer img {
+    height: 80%; /* agar tidak melebihi tinggi footer */
+    object-fit: contain;
 }
 
-.back-dashboard:hover {
-  color: #ffffff;
-  transform: scale(1.5);
-} */
 
-/* .containerr {
-    width: 850px;
-    height: 300px;
-    background-color: rgba(255, 255, 255, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
+
 
 /*login page*/
 
@@ -273,48 +250,6 @@ input:not(:placeholder-shown) ~ label {
     background-color: #1e4b45;
 }
 
-/* .container {
-    width: 850px;
-    height: auto;
-    background-color: rgba(255, 243, 243, 0.7);
-    border: 1px solid #518E65;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 10px;
-} */
-
-
-/*
-.fieldd {
-    width: 670px;
-    height: 80px;
-    background-color: #ECECEC;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    border-radius: 10px;
-    flex-direction: row;
-} */
-
-/* .input-container {
-    width: 100%;
-    position: relative; */
-    /* display: flex;
-    flex-direction: row; */
-
-/* } */
-
-/* .button-container {
-    width: 100%;
-    position: relative;
-    color: #285D57;
-} */
-
-
 /*dashboard page*/
 
 .container-dashboard {
@@ -355,11 +290,6 @@ input:not(:placeholder-shown) ~ label {
   height: auto;
 }
 
-/* .open-btnpage h2 {
-  color: white;
-  font-size: 20px;
-  margin: 0;
-} */
 
 .dashboard-select {
   padding: 10px;
@@ -461,10 +391,10 @@ input:not(:placeholder-shown) ~ label {
   background-color: #D9D9D9;
   text-align: center;
   font-size: 18px;
-  /* font-weight: 600; */
+  font-weight: 600;
   color: #2e4970;
   padding: 10px;
-  height: 40px;
+  height: 60px;
 }
 
 /*admisi-panggilantrean page*/
@@ -561,6 +491,7 @@ input:not(:placeholder-shown) ~ label {
   flex-direction: column;
   gap: 10px;
   padding: 100px;
+  align-items: center;
 }
 
 .options label {
@@ -581,6 +512,7 @@ input:not(:placeholder-shown) ~ label {
   cursor: pointer;
   width: auto;
   align-self: center;
+  margin-bottom: 10px;
   /* box-shadow: 4px 4px 10px rgba(0,0,0,0.3); */
 }
 
@@ -590,7 +522,7 @@ input:not(:placeholder-shown) ~ label {
 
 
 .selesai-button {
-  background-color: #3EA99F;
+  background-color: #27ae60;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -602,7 +534,23 @@ input:not(:placeholder-shown) ~ label {
 }
 
 .selesai-button:hover {
-  background-color: #369289; /* Sedikit lebih gelap saat hover */
+  background-color: #229954 ; /* Sedikit lebih gelap saat hover */
+}
+
+.lewati-button {
+  background-color: #f1c40f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: auto;
+  align-self: center;
+  /* box-shadow: 4px 4px 10px rgba(0,0,0,0.3); */
+}
+
+.lewati-button:hover {
+  background-color: #d4ac0d; /* Sedikit lebih gelap saat hover */
 }
 
 .ulang-button {
@@ -617,7 +565,7 @@ input:not(:placeholder-shown) ~ label {
   /* box-shadow: 4px 4px 10px rgba(0,0,0,0.3); */
 }
 
-.ualng-button:hover {
+.ulang-button:hover {
   background-color: #1f3d5e; /* Sedikit lebih gelap saat hover */
 }
 
@@ -643,11 +591,11 @@ input:not(:placeholder-shown) ~ label {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   background: rgba(255, 243, 243, 0.6);
   border-radius: 5px;
   /* border: 3px solid #fff; */
-  gap: 25px;
+  gap: 5px;
   font-family: sans-serif;
 }
 
@@ -655,7 +603,7 @@ input:not(:placeholder-shown) ~ label {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 5px;
 }
 
 .kotak {
@@ -717,13 +665,45 @@ input:not(:placeholder-shown) ~ label {
   background-color: #1e3b5e;
 }
 
+.btn-panggil-selesai {
+  margin-top: 10px;
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  /* align-self: flex-start; */
+}
+
+.btn-panggil-selesai:hover {
+  background-color: #229954;
+}
+
+.btn-panggil-lewati {
+  margin-top: 10px;
+  background-color: #f1c40f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  /* align-self: flex-start; */
+}
+
+.btn-panggil-lewati:hover {
+  background-color: #d4ac0d;
+}
+
 .opsi input[type="radio"] {
   width: 16px;
   height: 16px;
   accent-color: #2a6354; /* warna tema */
 }
 
-
+.hidden{
+    display: none;
+}
 
 /*display page*/
 .display {
@@ -942,36 +922,6 @@ input:not(:placeholder-shown) ~ label {
     color: #555;
 }
 
-/* .input-field {
-    width: 400px;
-    height: 60px;
-    background-color: #ECECEC;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #444;
-    margin-bottom: 20px;
-    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
-
-} */
-/*
-.kodebooking {
-    font-size: 18px;
-} */
-
-/* .cari-button {
-    width: 200px;
-    height: 60px;
-    font-size: 26px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(90deg, #000000, #0F4C81);
-    color: white;
-    cursor: pointer;
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
-} */
-
 .right-section {
     flex: 1;
     display: flex;
@@ -1026,30 +976,17 @@ input:not(:placeholder-shown) ~ label {
     text-align: center; /* GANTI dari center ke left */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     height: auto;
-    margin-top: 90px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center; /* agar isi di tengah */
-    /* gap: 5px; */
-    /* width: 900px; Tambahan supaya proporsional */
-   /*  margin: 0 auto; Tengah secara horizontal */
   }
 
   .confirmation-container p {
     /* font-size: 8px !important; */
     color: #000;
     margin-bottom: 15px;
-    /* margin-top: 100px; */
-    /* line-height: 1.6; */
-    /* padding: 20px; */
-    /* gap: 100px; */
   }
-
-
-  /* .info-text { */
-    /* font-size: 20px; */
-    /* margin-bottom: 20px; */
-  /* } */
 
   .konfirmasi-button {
     margin-top: 30px;
@@ -1104,7 +1041,6 @@ input:not(:placeholder-shown) ~ label {
 .confirmation-label {
     width: 220px; /* lebar kolom label */
     text-align: right;
-
 }
 
 .confirmation-value {
@@ -1129,31 +1065,22 @@ input:not(:placeholder-shown) ~ label {
     display: flex;
     flex-direction: column;
     align-items: center; /* agar isi di tengah */
-    /* gap: 5px; */
-    /* width: 900px; Tambahan supaya proporsional */
-   /*  margin: 0 auto; Tengah secara horizontal */
   }
 
   .container-terimakasih h1 {
-    /* font-size: 8px !important; */
     color: #ffffff;
     margin-bottom: 15px;
-    /* margin-top: 100px; */
-    /* line-height: 1.6; */
-    /* padding: 20px; */
-    /* gap: 100px; */
   }
 
   .container-terimakasih p strong {
     color: white;
   }
 
-
 /*Print Page*/
 .ticket-box {
-    margin-top: 60px;
-    margin-bottom: 10px;
-    padding: 30px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    padding: 20px;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 16px;
     text-align: center;
@@ -1167,33 +1094,33 @@ input:not(:placeholder-shown) ~ label {
 }
 
 .ticket-title {
-    font-size: 21px;
+    font-size: 18px;
     font-weight: bold;
     /* margin-bottom: 1px; */
     color: #000;
 }
 
 .ticket-number {
-    font-size: 56px;
+    font-size: 52px;
     font-weight: bold;
-    margin: 10px 0;
+    /* margin: 5px 0; */
     color: #000;
 }
 
 .ticket-subtitle {
-    font-size: 20px;
+    font-size: 18px;
     color: #333;
 }
 
 .ticket-time {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: 18px;
-    font-weight: 500;
+    /* font-weight: 500; */
     color: #333;
 }
 
 .ticket-warning {
-    margin-top: 10px;
+    margin-top: 5px;
     font-size: 12px;
     color: #333;
 }
@@ -1206,32 +1133,27 @@ input:not(:placeholder-shown) ~ label {
 }
 
 .print-container {
-    background: #265D58;
+    background: rgba(38, 93, 88, 0.8);
     /* border-radius: 10px; */
-    padding: 20px;
-    width: 100vw;
+    /* padding: 10px; */
+    width: auto;
     text-align: center; /* GANTI dari center ke left */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    height: auto;
-    margin-top: 10px;
+    height: 70px;
+    /* margin-top: 10px; */
     display: flex;
     flex-direction: column;
     align-items: center; /* agar isi di tengah */
     justify-content: center;
-    height: 125px;
     /* gap: 5px; */
     /* width: 900px; Tambahan supaya proporsional */
    /*  margin: 0 auto; Tengah secara horizontal */
   }
 
   .print-container p {
-    /* font-size: 8px !important; */
     color: #ffffff;
-    margin-bottom: 15px;
-    /* margin-top: 100px; */
-    /* line-height: 1.6; */
-    /* padding: 20px; */
-    /* gap: 100px; */
+    width: 80vw;
+    /* margin-bottom: 15px; */
   }
 
   .print-container p strong {
@@ -1239,8 +1161,8 @@ input:not(:placeholder-shown) ~ label {
   }
 
   .print-button {
-    margin-top: 30px;
-    width: 335px;
+    margin-top: 10px;
+    width: 200px;
     background: linear-gradient(90deg, #000000, #0F4C81);
     color: #fff;
     /* font-size: 8px; */
@@ -1388,8 +1310,6 @@ input:not(:placeholder-shown) ~ label {
 }
 
 .input-group label {
-    /* font-size: 8px; */
-    /* font-weight: bold; */
     color: #222;
 }
 
@@ -1645,6 +1565,12 @@ user-select: none;
     color: #000000;
   }
 
+  .pilihpoli-select:disabled {
+    background-color: #eee;
+    color: #888;
+    cursor: not-allowed;
+}
+
   .pilihpoli-simpan {
     display: flex;
     justify-content: center;
@@ -1850,25 +1776,135 @@ user-select: none;
     accent-color: #2a6354; /* warna tema */
   }
 
+/*sidebar jadwal dokter*/
 
+.jadwal-dokter-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 
-
-/* FOOTER */
-footer {
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    width: 150vh; /* Sesuaikan dengan ukuran gambar */
-    height: 10vh; /* Sesuaikan dengan ukuran gambar */
-    background: url('/images/it.png') right/contain no-repeat;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 20px;
 }
 
-footer p {
-    align-items: left;
-    align-content: left;
-    justify-content: left;
+/*Jadwal-Pilih-Poli*/
+
+.pilih-poli-container, .jadwal-dokter-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 20px;
 }
 
+.pilih-poli-wrapper {
+  margin: 0 20px;
+}
+
+.petunjuk-scroll {
+  text-align: center;
+  font-size: 1rem;
+  color: #285D57;
+  margin: 12px 0;
+  display: block;           /* pastikan tampil seperti blok */
+  width: 100%;              /* ambil seluruh lebar container */
+}
+
+.poli-box button {
+  min-height: 50px;
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  color: #285D57;
+}
+
+.poli-box button:hover, .jadwal-box:hover {
+  background-color: rgba(40, 93, 87, 0.2);
+  transition: background 0.3s;
+}
+
+.pilih-poli-scroll {
+  max-height: 60vh;         /* Sesuaikan tinggi area tampil */
+  overflow-y: auto;         /* Scroll ke bawah */
+  padding: 0 12px 0 0;      /* Tambah ruang kanan buat scrollbar */
+  /* margin: 0px 20px; */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  -webkit-overflow-scrolling: touch; /* Untuk smooth scroll di touchscreen */
+  overflow-y: auto;  /* ✅ aktifkan scroll vertikal */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  background-color: rgba(255, 243, 243, 0.7);
+}
+
+/* Optional: perbaiki tampilan scrollbar untuk touchscreen */
+.pilih-poli-scroll::-webkit-scrollbar {
+  width: 50px;
+  background-color: rgba(255, 243, 243, 0.589);
+}
+.pilih-poli-scroll::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 5px;
+}
+
+/*Jadwal Dokter Blade*/
+.jadwal-wrapper {
+    width: 90%;
+    max-width: 1200px;
+    max-height: 60vh; /* ✅ batasi tinggi agar bisa scroll jika data banyak */
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    overflow-y: auto;  /* ✅ aktifkan scroll vertikal */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.jadwal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.jadwal-table th,
+.jadwal-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+.jadwal-table thead th.green-head {
+    background-color: #cde5a5;
+    font-weight: bold;
+    color: #000;
+}
+
+.jadwal-table tbody td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.jadwal-table tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.jadwal-table tbody tr:nth-child(odd) {
+    background-color: #f5f5f5;
+}
+
+.jadwal-table td.red-cell {
+    background-color: #f59ea0;
+    font-weight: bold;
+}
 
 @media print {
     body {

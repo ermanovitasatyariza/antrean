@@ -240,35 +240,137 @@ function printAndRedirect() {
     window.print();
 }
 
-function tampilkanLewati() {
-        // Tampilkan bagian input nomor dilewati
-        document.getElementById("bagian-lewati").style.display = "block";
+function tampilkanBagianPanggil() {
+    // Ambil semua elemen yang dibutuhkan
+    const bagianUlang = document.getElementById("bagian-ulang");
+    const bagianPanggil = document.getElementById("bagian-panggil");
+    const audioPlayer = document.getElementById("audioPlayer");
 
-        // Ambil nomor antrean dari elemen di halaman
-        const nomorAntrean = document.querySelector('.nomor-antrian-panggil').textContent.trim();
+    const tombolLewati = document.getElementById('tombol-lewati');
+    const tombolSelesai = document.getElementById('tombol-selesai');
+    const tombolSelanjutnya = document.getElementById('tombol-selanjutnya');
 
-        // Buat path ke file audio
-        const audioPath = `/audio/${nomorAntrean}.mp3`;
+    const tombolPanggil = document.getElementById('panggil');
+    const tombolPanggilUlang = document.getElementById('panggil-ulang');
 
-        // Setel audio dan mainkan
+    // Sembunyikan bagian ulang dan tombol panggil ulang
+    bagianUlang.style.display = "none";
+    if (tombolPanggilUlang) tombolPanggilUlang.style.display = "none";
+
+    // Sembunyikan tombol Panggil
+    // if (tombolPanggil) tombolPanggil.style.display = "none";
+
+    // Tampilkan bagian panggil
+    bagianPanggil.style.display = "inline-block";
+
+    // Tampilkan tombol Lewati dan Selesai
+    tombolLewati.style.display = "inline-block";
+    tombolSelesai.style.display = "inline-block";
+
+    // Sembunyikan tombol Selanjutnya
+    tombolSelanjutnya.style.display = "none";
+
+    // Play audio antrean
+    const nomorAntrean = document.querySelector('.nomor-antrian-panggil')?.textContent.trim() || 'default';
+    const audioPath = `/audio/${nomorAntrean}.mp3`;
+    audioPlayer.src = audioPath;
+    audioPlayer.play().catch(error => {
+        console.error("Gagal memutar audio:", error);
+    });
+
+    // Event tombol Lewati
+    tombolLewati.onclick = () => {
+        tombolLewati.style.display = "none";
+        tombolSelesai.style.display = "none";
+        tombolPanggil.style.display = "none";
+        tombolSelanjutnya.style.display = "inline-block";
+    };
+
+    // Event tombol Selesai
+    tombolSelesai.onclick = () => {
+        tombolLewati.style.display = "none";
+        tombolSelesai.style.display = "none";
+        if (tombolPanggil) tombolPanggil.style.display = "none";
+        tombolSelanjutnya.style.display = "inline-block";
+    };
+
+    // Event tombol Selanjutnya
+    tombolSelanjutnya.onclick = () => {
+        tombolPanggil.style.display = "inline-block";
+        tombolPanggilUlang.style.display = "inline-block";
+        tombolSelanjutnya.style.display = "none";
+        bagianPanggil.style.display = "none"; // Reset tampilan bagian panggil
+    };
+
+}
+
+function tampilkanBagianPanggilUlang() {
+    // Sembunyikan bagian panggil biasa
+    document.getElementById("bagian-panggil").style.display = "none";
+
+    // Tampilkan bagian panggil ulang
+    const bagianUlang = document.getElementById("bagian-ulang");
+    bagianUlang.style.display = "block";
+
+    // Tampilkan tombol-tombol awal
+    const tombolPanggilUlang = document.getElementById('tombol-panggil-ulang');
+    const tombolLewatiUlang = document.getElementById('tombol-lewati-ulang');
+    const tombolSelesaiUlang = document.getElementById('tombol-selesai-ulang');
+    const tombolSelanjutnyaUlang = document.getElementById('tombol-selanjutnya-ulang');
+    const selectNoLewati = document.getElementById('no-lewati');
+    const PanggilUlang = document.getElementById('panggil-ulang');
+    const Panggil = document.getElementById('panggil');
+
+    tombolPanggilUlang.style.display = 'inline-block';
+    tombolLewatiUlang.style.display = 'inline-block';
+    tombolSelesaiUlang.style.display = 'inline-block';
+    tombolSelanjutnyaUlang.style.display = 'none';
+    selectNoLewati.style.display = 'inline-block';
+
+    // Saat tombol panggil diklik, putar audio dari nomor yang dipilih
+    tombolPanggilUlang.addEventListener('click', function () {
+        const nomorTerpilih = selectNoLewati.value;
+        if (!nomorTerpilih || nomorTerpilih === "Pilih Nomor") return;
+
+        const audioPath = `/audio/${nomorTerpilih}.mp3`;
         const audioPlayer = document.getElementById('audioPlayer');
         audioPlayer.src = audioPath;
         audioPlayer.play().catch(error => {
             console.error("Gagal memutar audio:", error);
         });
+    });
+
+    // Fungsi jika Lewati diklik
+    tombolLewatiUlang.addEventListener('click', function () {
+    tombolPanggilUlang.style.display = 'none';
+    tombolSelesaiUlang.style.display = 'none';
+    tombolLewatiUlang.style.display = 'none';
+    tombolSelanjutnyaUlang.style.display = 'inline-block';
+    selectNoLewati.style.display = 'none';
+    Panggil = 'inline-block';
+    });
+
+    // Fungsi jika Selesai diklik
+    tombolSelesaiUlang.addEventListener('click', function () {
+    tombolPanggilUlang.style.display = 'none';
+    tombolSelesaiUlang.style.display = 'none';
+    tombolLewatiUlang.style.display = 'none';
+    tombolSelanjutnyaUlang.style.display = 'inline-block';
+    selectNoLewati.style.display = 'none';
+    Panggil = 'inline-block';
+    });
+
+    // Reset pilihan tombol panggil utama
+    // const tombolPanggil = document.getElementById('panggil');
+    // if (tombolPanggil) tombolPanggil.style.display = 'none';
+
+    // Event tombol Selanjutnya
+    tombolSelanjutnya.onclick = () => {
+    tombolPanggil.style.display = "inline-block";
+    tombolPanggilUlang.style.display = "inline-block";
+    tombolSelanjutnya.style.display = "none";
+    bagianPanggil.style.display = "none"; // Reset tampilan bagian panggil
+    };
+
 }
 
-function panggilUlang() {
-        // Ambil nomor antrean dari elemen di halaman
-        const nomorAntrean = document.querySelector('.nomor-antrian-panggil').textContent.trim();
-
-        // Buat path ke file audio
-        const audioPath = `/audio/${nomorAntrean}.mp3`;
-
-        // Setel audio dan mainkan
-        const audioPlayer = document.getElementById('audioPlayer');
-        audioPlayer.src = audioPath;
-        audioPlayer.play().catch(error => {
-            console.error("Gagal memutar audio:", error);
-        });
-}

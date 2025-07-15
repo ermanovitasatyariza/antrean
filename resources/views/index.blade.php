@@ -30,3 +30,4 @@
     </form>
     </div>
 @endsection
+@section('hide-sidebar', true)

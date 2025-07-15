@@ -1,17 +1,6 @@
 @extends('layouts.app')
 @section('hide-title-dashboard', true)
 @section('header-left')
-    {{-- @php
-        $from = request()->query('from', 'px-personal');
-        // Set default agar tidak undefined
-        $backUrl = url('px-personal');
-
-        if ($from === 'px-personal') {
-            $backUrl = url('px-personal');
-        }
-    @endphp
-    <a href="{{ $backUrl }}" class="back-button">←</a> --}}
-    {{-- <a href="{{ getBackUrlFrom() }}" class="back-button">←</a> --}}
     @php
     $backUrl = url('px-personal'); // Asal default
     @endphp
@@ -74,8 +63,3 @@
         </div>
     </div>
 @endsection
-{{-- <script>
-    $(document).ready(function(){
-  alert('');
-});
-</script> --}}

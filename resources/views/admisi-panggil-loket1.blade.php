@@ -27,7 +27,7 @@
             $lamaTunggu = sprintf('%02d:%02d:%02d', $diff->h, $diff->i, $diff->s);
         @endphp
 
-    <form method="POST" action="{{ url('admisi-panggil-loket1') }}">
+<form method="POST" action="{{ url('admisi-panggil-loket1') }}">
     <input type="hidden" name="loket" value="{{ $loket }}">
     <input type="hidden" name="payer" value="{{ $payer }}">
     <input type="hidden" name="status_pasien" value="{{ $status_pasien }}">
@@ -64,23 +64,26 @@
         <div class="box-kanan">
             <div><strong>Antrian yang telah dilayani :</strong></div>
             <div><strong>Sisa Antrian :</strong></div>
-            {{-- <div class="options">
-                <label><input type="radio" name="aksi" value="selanjutnya" required>Selanjutnya</label>
-                <label><input type="radio" name="aksi" value="lewati">Lewati</label>
-                <button type="submit" class="panggil-button">Panggil</button>
-            </div> --}}
-            <div>
-                <button type="button" class="selesai-button">Selesai</button>
-                <button type="button" class="panggil-button" onclick="tampilkanLewati()">Panggil</button>
+            <div id="pilihan-panggil">
+                <button type="button" class="panggil-button" onclick="tampilkanBagianPanggil()" id="panggil">Panggil</button>
+                <button type="button" class="panggil-button" onclick="tampilkanBagianPanggilUlang()" id="panggil-ulang">Panggil Ulang Yang di Lewati</button>
+           </div>
+            <audio id="audioPlayer" src="" hidden></audio>
 
-            </div>
-            <!-- Audio player (tersembunyi) -->
-                <audio id="audioPlayer" src="" hidden></audio>
-
-            <!-- Bagian yang disembunyikan awalnya -->
-            <div id="bagian-lewati" style="display: none; margin-top: 1rem;">
-                <div>Nomor Yang di Lewati</div>
+            <!-- Bagian Panggil -->
+            <div id="bagian-panggil" style="display: none; margin-top: 1rem;">
                 <div>
+                    <button type="button" class="lewati-button" id="tombol-lewati">Lewati</button>
+                    <button type="button" class="selesai-button" id="tombol-selesai">Selesai</button>
+                    <button type="button" class="selanjutnya-button" id="tombol-selanjutnya" style="display: none;">Selanjutnya</button>
+                </div>
+            </div>
+
+            <!-- Bagian Panggil Ulang -->
+            <div id="bagian-ulang" style="display: none; margin-top: 1rem;">
+                {{-- <div></div> --}}
+                <div>
+                    Nomor antrean yang telah dilewati
                     <select id="no-lewati" name="no-lewati">
                         <option disabled selected>Pilih Nomor</option>
                         <option value="1">1</option>
@@ -88,15 +91,14 @@
                     </select>
                 </div>
                 <div>
-                    <button type="submit" class="ulang-button" onclick="panggilUlang()">Panggil Ulang</button>
-                    <!-- Audio player (tersembunyi) -->
-                    <audio id="audioPlayer" src="" hidden></audio>
-                    <button type="submit" class="selanjutnya-button">Selanjutnya</button>
+                    <button type="button" class="panggil-button" id="tombol-panggil-ulang">Panggil</button>
+                    <button type="button" class="lewati-button" id="tombol-lewati-ulang">Lewati</button>
+                    <button type="button" class="selesai-button" id="tombol-selesai-ulang">Selesai</button>
+                    <button type="button" class="selanjutnya-button" id="tombol-selanjutnya-ulang" style="display: none;">Selanjutnya</button>
                 </div>
             </div>
-
         </div>
     </div>
 </form>
-
 @endsection
+@section('hide-sidebar', true)

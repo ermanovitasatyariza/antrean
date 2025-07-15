@@ -59,10 +59,11 @@ class AssesmentController extends Controller
             $nomorAntrean = $lastPriorityNumber + 1;
         } else {
             // Nomor antrean biasa berdasarkan asal halaman
-            $lastNumber = Assesment::where('payer', $validated['payer'])
-                                    ->where('is_prioritas', false)
-                                    ->max('nomor_antrean') ?? 0;
-            $nomorAntrean = $lastNumber + 1;
+            // $lastNumber = Assesment::where('payer', $validated['payer'])
+            //                         ->where('is_prioritas', false)
+            //                         ->max('nomor_antrean') ?? 0;
+            // $nomorAntrean = $lastNumber + 1;
+            Assesment::gen_nomor($validated['payer']);
         }
 
         $assesment = Assesment::create([

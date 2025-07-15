@@ -18,13 +18,13 @@
             <div class="box-antrian">
                 <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=1&payer=bpjs&status_pasien=baru'">
                     <div class="box-header">Loket 1</div>
-                    <div class="box-footer">Pasien Baru BPJS</div>
+                    <div class="box-footer">Pasien Baru <br>BPJS</div>
                 </button>
             </div>
             <div class="box-antrian">
                 <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=2&payer=personal&status_pasien=baru'">
                     <div class="box-header">Loket 2</div>
-                    <div class="box-footer">Pasien Baru Umum</div>
+                    <div class="box-footer">Pasien Baru <br>Umum</div>
                 </button>
             </div>
             <div class="box-antrian">
@@ -36,13 +36,13 @@
             <div class="box-antrian">
                 <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=4&payer=bpjs&status_pasien=lama'">
                     <div class="box-header">Loket 4</div>
-                    <div class="box-footer">Pasien Lama BPJS</div>
+                    <div class="box-footer">Pasien Lama <br>BPJS</div>
                 </button>
             </div>
             <div class="box-antrian">
                 <button onclick="window.location.href='{{ url('admisi-panggil-loket1') }}?from=admisi-pilihloket&loket=5&payer=personal&status_pasien=lama'">
                     <div class="box-header">Loket 5</div>
-                    <div class="box-footer">Pasien Lama Umum</div>
+                    <div class="box-footer">Pasien Lama <br>Umum</div>
                 </button>
             </div>
             <div class="box-antrian">
@@ -54,3 +54,4 @@
         </div>
     </div>
 @endsection
+@section('hide-sidebar', true)

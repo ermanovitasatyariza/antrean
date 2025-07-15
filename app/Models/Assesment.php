@@ -18,4 +18,12 @@ class Assesment extends Model
         'nomor_antrean',
         'is_prioritas', // ← Tambahkan ini!
     ];
+
+    public static function gen_nomor($payer) {
+         $lastNumber = Assesment::where('payer', $payer)
+                                    ->where('is_prioritas', false)
+                                    ->max('nomor_antrean') ?? 0;
+         $nomorAntrean = $lastNumber + 1;
+         return $nomorAntrean;
+    }
 }
